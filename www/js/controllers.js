@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $cordovaGeolocation, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -21,7 +21,21 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
-  $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+  $cordovaGeolocation
+    .getCurrentPosition({
+        timeout: 10000,
+        enableHighAccuracy: false
+    })
+    .then(function(position) {
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+
+        $scope.map = { center: { latitude: lat, longitude: long }, zoom: 15 };
+
+    }, function(err) {
+        //TODO Display error message
+  });
+
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
