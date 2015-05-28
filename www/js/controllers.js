@@ -21,6 +21,8 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
