@@ -4,10 +4,12 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'uiGmapgoogle-maps'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ngOpenFB']);
 
-.run(function($ionicPlatform) {
+
+app.run(function($ionicPlatform, ngFB) {
   $ionicPlatform.ready(function() {
+    ngFB.init({appId: '719219301536939'});
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -18,55 +20,75 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'uiGmapg
       StatusBar.styleDefault();
     }
   });
-})
+});
 
-.config(function(uiGmapGoogleMapApiProvider) {
-  uiGmapGoogleMapApiProvider.configure({
-    key: 'AIzaSyDquSlPRAWLGlIGDH9_8Ouu5Op_zkNgyms',
-    v: '3.17',
-    libraries: 'weather,geometry,visualization'
-  });
-})
+app.config(function($stateProvider, $urlRouterProvider) {
 
-.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+
   .state('app', {
-    url: "/app",
+    url: '/app',
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
   .state('app.profile', {
-    url: "/profile",
+    url: '/profile',
     views: {
       'menuContent': {
-        templateUrl: "templates/profile.html"
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
       }
     }
   })
 
-  .state('app.playlists', {
-    url: "/playlists",
+  .state('app.search', {
+    url: '/search',
     views: {
       'menuContent': {
-        templateUrl: "templates/playlists.html",
-        controller: 'PlaylistsCtrl'
+        templateUrl: 'templates/search.html',
+        controller: 'SearchCtrl'
       }
     }
   })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+  .state('app.chat', {
+    url: '/chat/:chatId/:nome',
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/chat.html',
+        controller: 'ChatCtrl'
       }
     }
-  });
+  })
+
+  .state('app.chats', {
+    url: '/chats',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/chats.html',
+        controller: 'ChatsCtrl'
+      }
+    }
+  })
+
+  .state('app.settings', {
+    url: '/settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/settings.html',
+        controller: 'SettingsCtrl'
+      }
+    }
+  })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/login');
 });

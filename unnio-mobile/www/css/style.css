@@ -1,3 +1,14 @@
 /* Empty. Add your own CSS if you like */
 
-.angular-google-map-container { height:100vh; }
+.sideMenu i{
+  font-size: 20px;
+}
+
+.age:before{
+  content: "Age: ";
+}
+
+.profile img{
+  max-width: 288px;
+  height: auto;
+}
