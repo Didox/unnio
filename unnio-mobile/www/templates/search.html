@@ -1,7 +1,13 @@
 <ion-view view-title="Search">
   <ion-content>
-    <h2>Longitude: {{geo.long}}</h2>
-    <h2>Latitude: {{geo.lat}}</h2>
-    <h2>Range {{settings.range}}</h2>
+    <ion-list>
+      <ion-item class="searchItem" href="#/app/user/{{uid}}" ng-repeat="result in searchResults">
+          <div class="img" style="background-image:url({{result.avatar}})"></div>
+          <div class="dados">
+            <span>{{result.name}}</span>
+            <p>{{result.distance}}</p>
+          </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

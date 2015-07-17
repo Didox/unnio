@@ -2,18 +2,28 @@
   <ion-content>
     <div class="list card">
       <div class="item item-divider">
-        Range <span>{{settings.range}} km</span>
+        Search options
       </div>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Sport
+        </div>
+        <!-- TODO: Carregar isso dinamicamente -->
+        <select ng-model="userSettings.sport" required>
+          <option value="Tênis">Tênis</option>
+          <option value="Futebol">Futebol</option>
+        </select>
+      </label>
       <div class="item range range-positive">
-        <p></p>
+        <span class="input-label">Range <span>{{userSettings.range}} km </span></span>
         <i class="icon ion-ios-sunny-outline"></i>
-        <input type="range" ng-model="settings.range" min="0" max="100" value="{{settings.range}}">
+        <input type="range" ng-model="userSettings.range" min="0" max="100" value="10">
         <i class="icon ion-ios-sunny"></i>
       </div>
       <div class="item item-toggle">
-        Public profile?
+        <span class="input-label">Public profile?</span>
         <label class="toggle toggle-positive">
-          <input type="checkbox" ng-model="settings.public_profile">
+          <input type="checkbox" ng-model="userSettings.public">
           <div class="track">
             <div class="handle"></div>
           </div>

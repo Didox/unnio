@@ -8,7 +8,28 @@
   content: "Age: ";
 }
 
+.profile .avatar{
+  text-align: center;
+}
 .profile img{
-  max-width: 288px;
-  height: auto;
+  border-radius: 50%;
+}
+
+.item.item-toggle{
+  padding: 8px 16px;
+}
+
+.searchItem .img{
+  border-radius: 50%;
+  float: left;
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center center;
+  margin-right: 10px;
+}
+
+.searchItem .dados{
+  float: left;
+  margin-top: 6px
 }

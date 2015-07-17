@@ -1,3 +1,0 @@
-app.service(function (argument) {
-  // body...
-})

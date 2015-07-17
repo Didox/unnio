@@ -1,14 +1,21 @@
 <ion-view view-title="Profile">
   <ion-content class="profile">
     <div class="list">
-      <div class="item">
-        <h2>{{user.name}}</h2>
-        <p class="age">{{user.age}}</p>
-        <p class="gender">{{user.gender}}</p>
+      <div class="item avatar">
+        <img ng-src="{{userProfile.avatar}}" />
       </div>
-      <div class="item">
-        <img src="{{profile_image}}" />
-      </div>
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <h2>{{userProfile.name}}</h2>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Nick</span>
+        <input type="text" ng-model="userProfile.nickname" placeholder="How users see you">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Location</span>
+        <input type="tel" ng-model="userProfile.location" placeholder="City, neighborhood">
+      </label>
     </div>
   </ion-content>
 </ion-view>
