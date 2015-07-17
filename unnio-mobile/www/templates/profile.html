@@ -2,11 +2,12 @@
   <ion-content class="profile">
     <div class="list">
       <div class="item avatar">
-        <img ng-src="{{userProfile.avatar}}" />
+        <div class="img" style="background-image:url({{userProfile.avatar}})" /></div>
       </div>
       <label class="item item-input">
         <span class="input-label">Name</span>
         <h2>{{userProfile.name}}</h2>
+        <span></span><i class="icon ion-locked"></i>
       </label>
       <label class="item item-input">
         <span class="input-label">Nick</span>

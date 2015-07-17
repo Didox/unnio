@@ -59,7 +59,7 @@ app.controller('AppCtrl', function($scope, $state, $firebaseAuth, $firebaseObjec
 
   $scope.fbLogout = function () {
     authData.$unauth();
-    $state.go('login');
+    // $state.go('login');
   };
 
 

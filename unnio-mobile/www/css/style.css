@@ -1,18 +1,37 @@
 /* Empty. Add your own CSS if you like */
 
+ion-content{
+  background: #EEE;
+}
+
 .sideMenu i{
   font-size: 20px;
 }
 
-.age:before{
-  content: "Age: ";
+.profile .avatar{
+  background-color: #EEE;
+}
+.profile .img{
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+  clear: both;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center center;
+}
+.profile h2{
+  width: 100%;
+}
+.profile .icon{
+  margin-right: 15px;
 }
 
-.profile .avatar{
-  text-align: center;
-}
-.profile img{
-  border-radius: 50%;
+.profile input{
+  font-size: 16px;
 }
 
 .item.item-toggle{
@@ -32,4 +51,8 @@
 .searchItem .dados{
   float: left;
   margin-top: 6px
+}
+
+select option{
+  font-size: 30px;
 }

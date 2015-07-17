@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOauth, $firebaseObject, FIREBASECONFIG, $log, $location) {
+app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOauth, $firebaseObject, FIREBASECONFIG, $location) {
 
   var ref = new Firebase(FIREBASECONFIG.url);
   var auth = $firebaseAuth(ref);
@@ -40,13 +40,12 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
   };
 
   $scope.loginWeb = function () {
-    $log.log($location.absUrl());
+    alert($location.absUrl());
     auth.$authWithOAuthPopup('facebook').then(function(authData) {
-
       $scope.uid = authData.uid;
       var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));
       userProfileObj.$loaded().then(function() {
-        userProfileObj.email = authData.facebook.cachedUserProfile.email;
+        console.log(authData.facebook.cachedUserProfile);
         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
         userProfileObj.$save().then(function(ref) {
