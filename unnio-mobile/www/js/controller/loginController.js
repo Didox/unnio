@@ -40,7 +40,6 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
   };
 
   $scope.loginWeb = function () {
-    alert($location.absUrl());
     auth.$authWithOAuthPopup('facebook').then(function(authData) {
       $scope.uid = authData.uid;
       var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));

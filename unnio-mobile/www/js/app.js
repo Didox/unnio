@@ -6,6 +6,29 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'starter.controllers', 'ngCordova', 'firebase', 'ngCordovaOauth', 'ionic.utils']);
 
+app.controller("MainController", [ '$scope', function($scope) {
+
+  $scope.data = {
+    "launched" : "No"
+  };
+
+  $scope.reportAppLaunched = function() {
+    console.log("App Launched Via Custom URL");
+    $scope.$apply( function() {
+        $scope.data.launched = "Yes";
+    });
+  }
+
+}]);
+
+function handleOpenURL(url) {
+
+  var body = document.getElementsByTagName("body")[0];
+  var mainController = angular.element(body).scope();
+  mainController.reportAppLaunched(url);
+
+}
+
 app.constant('FIREBASECONFIG', {
   url:'https://unnio.firebaseio.com',
   users:'https://unnio.firebaseio.com/users/'

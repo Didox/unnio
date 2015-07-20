@@ -1,4 +1,5 @@
 app.controller('ProfileCtrl', function($scope, $state, $firebaseObject, $ionicLoading, FIREBASECONFIG) {
+  handleOpenURL("x");
   if($scope.uid){
     $scope.showLoading();
 
