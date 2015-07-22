@@ -1,20 +1,20 @@
-<ion-view view-title="{{userUid}}">
+<ion-view view-title="{{userName}}">
   <ion-content class="profile">
     <div class="list">
       <div class="item avatar">
-        <img ng-src="{{userProfile.avatar}}" />
+        <div class="img" back-img="{{userProfile.avatar}}" /></div>
       </div>
       <label class="item item-input">
-        <span class="input-label">Name</span>
+        <span class="input-label">Namne</span>
         <h2>{{userProfile.name}}</h2>
       </label>
-      <label class="item item-input">
+      <label class="item item-input" ng-if="userProfile.nickname">
         <span class="input-label">Nick</span>
-        <h2>{{userProfile.name}}</h2>
+        <h2>{{userProfile.nickname}}</h2>
       </label>
-      <label class="item item-input">
+      <label class="item item-input" ng-if="userProfile.location">
         <span class="input-label">Location</span>
-        <h2>{{userProfile.name}}</h2>
+        <h2>{{userProfile.location}}</h2>
       </label>
     </div>
   </ion-content>

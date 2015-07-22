@@ -1,0 +1,36 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add new sport</h1>
+    <button class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-select">
+        <div class="input-label">
+          Sport
+        </div>
+        <select ng-model="modal.name" required>
+          <option ng-repeat="option in modal.options" value="{{option.key}}">{{option.value}}</option>
+        </select>
+      </label>
+      <div class="item item-select">
+        <div class="input-label">
+          Skill level
+        </div>
+        <select ng-model="modal.level" required>
+          <option value="1">Newbie</option>
+          <option value="2">Advanced newbie</option>
+          <option value="3">Regular</option>
+          <option value="4">Good</option>
+          <option value="5">Very good</option>
+        </select>
+      </div>
+      <label class="item item-input">
+        <textarea placeholder="Your experience in that sport" ng-model='modal.about'></textarea>
+      </label>
+      <div class="item">
+        <button class="button button-block button-positive" ng-click="addSport()">Add</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -4,34 +4,17 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'starter.controllers', 'ngCordova', 'firebase', 'ngCordovaOauth', 'ionic.utils']);
+var app = angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'starter.controllers', 'ngCordova', 'firebase', 'ngCordovaOauth']);
 
-app.controller("MainController", [ '$scope', function($scope) {
-
-  $scope.data = {
-    "launched" : "No"
-  };
-
-  $scope.reportAppLaunched = function() {
-    console.log("App Launched Via Custom URL");
-    $scope.$apply( function() {
-        $scope.data.launched = "Yes";
+app.directive('backImg', function(){
+  return function(scope, element, attrs){
+    attrs.$observe('backImg', function(value) {
+      element.css({
+        'background-image': 'url(' + value +')',
+        'background-size' : 'cover'
+      });
     });
-  }
-
-}]);
-
-function handleOpenURL(url) {
-
-  var body = document.getElementsByTagName("body")[0];
-  var mainController = angular.element(body).scope();
-  mainController.reportAppLaunched(url);
-
-}
-
-app.constant('FIREBASECONFIG', {
-  url:'https://unnio.firebaseio.com',
-  users:'https://unnio.firebaseio.com/users/'
+  };
 });
 
 app.run(function($ionicPlatform) {
@@ -73,7 +56,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 
   .state('app.user', {
-    url: '/user/:userUid',
+    url: '/user/:userUid/:name',
     views: {
       'menuContent': {
         templateUrl: 'templates/user.html',
@@ -88,6 +71,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       'menuContent': {
         templateUrl: 'templates/profile.html',
         controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('app.sport', {
+    url: '/profile/sport/:sid/:name',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/sport.html',
+        controller: 'SportCtrl'
       }
     }
   })
@@ -118,16 +111,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
       'menuContent': {
         templateUrl: 'templates/chats.html',
         controller: 'ChatsCtrl'
-      }
-    }
-  })
-
-  .state('app.settings', {
-    url: '/settings',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/settings.html',
-        controller: 'SettingsCtrl'
       }
     }
   })

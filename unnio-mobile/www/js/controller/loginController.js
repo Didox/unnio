@@ -9,33 +9,7 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
     if (error) {
       $state.go('login');
     } else {
-      $scope.checkSettings();
       $state.go('app.profile');
-    }
-  };
-
-  $scope.checkSettings = function() {
-    if($scope.uid){
-      var userSettingsObj = $firebaseObject(userData.child($scope.uid).child('settings'));
-      userSettingsObj.$loaded().then(function() {
-        if(userSettingsObj.range){
-          $state.go('app.profile');
-        }else{
-          userSettingsObj.range = 15;
-          userSettingsObj.public = true;
-          userSettingsObj.$save().then(function(ref) {
-            $state.go('app.profile');
-          })
-          .catch(function(error) {
-            console.error("ERROR:", error);
-          });
-        }
-      }).catch(function(error) {
-        console.error("ERROR:", error);
-      });
-    }else{
-      console.log('ERROR: uid nao definido');
-      $state.go('login');
     }
   };
 
@@ -44,9 +18,11 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
       $scope.uid = authData.uid;
       var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));
       userProfileObj.$loaded().then(function() {
-        console.log(authData.facebook.cachedUserProfile);
+
         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
+        userProfileObj.searchRange = userProfileObj.searchRange ? userProfileObj.searchRange : 15
+
         userProfileObj.$save().then(function(ref) {
           onLoginComplete();
         })
@@ -63,7 +39,6 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
   };
 
   $scope.loginApp = function() {
-    $log.log($location.absUrl());
     $cordovaOauth.facebook('719219301536939', ['email']).then(function(result) {
       auth.$authWithOAuthToken('facebook', result.access_token).then(function(authData) {
 
@@ -71,7 +46,6 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
         var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));
         userProfileObj.$loaded().then(function() {
           
-
           userProfileObj.email = authData.facebook.cachedUserProfile.email;
           userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
           userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
@@ -96,4 +70,5 @@ app.controller('LoginCtrl', function($scope, $firebaseAuth, $state, $cordovaOaut
       $state.go('login');
     });
   }
+
 });

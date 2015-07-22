@@ -1,22 +1,53 @@
 <ion-view view-title="Profile">
+  <ion-nav-buttons side="right">
+    <button class="button" ng-click="openModal()">add sport</button>
+  </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
       <div class="item avatar">
-        <div class="img" style="background-image:url({{userProfile.avatar}})" /></div>
+        <div class="img" back-img="{{userProfile.avatar}}" /></div>
       </div>
-      <label class="item item-input">
+      <label class="item item-input item-icon-right">
         <span class="input-label">Name</span>
         <h2>{{userProfile.name}}</h2>
-        <span></span><i class="icon ion-locked"></i>
+        <i class="icon ion-locked item-note"></i>
       </label>
       <label class="item item-input">
         <span class="input-label">Nick</span>
-        <input type="text" ng-model="userProfile.nickname" placeholder="How users see you">
+        <input type="text" ng-model="userProfile.nickname" placeholder="How people see you">
       </label>
       <label class="item item-input">
         <span class="input-label">Location</span>
-        <input type="tel" ng-model="userProfile.location" placeholder="City, neighborhood">
+        <input type="tel" ng-model="userProfile.location" placeholder="City, state">
       </label>
+      <div class="item item-divider">Search options</div>
+      <label class="item range range-positive">
+        <span class="input-label">Range {{userProfile.searchRange}} km </span>
+        <input type="range" ng-model="userProfile.searchRange" min="0" max="30">
+      </label>
+      <div class="item item-toggle">
+        <span class="input-label">Hidden profile</span>
+        <label class="toggle toggle-positive">
+          <input type="checkbox" ng-model="userProfile.hidden">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
+        </label>
+      </div>
+      <div class="item item-divider item-button-right" ng-if="sportsArr.length > 0">
+        My Sports
+        <button class="button button-light" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
+          <i class="icon {{listConfig.shouldShowDelete ? 'ion-checkmark-round' : 'ion-navicon-round'}}"></i>
+        </button>
+      </div>
+      <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="false">
+        <ion-item ng-repeat="sport in sportsArr" ng-href="#/app/profile/sport/{{sport.$id}}/{{sport.name}}" class="item-icon-right">
+          <h2>{{sport.name}}</h2>
+          <p>{{sport.about}}</p>
+          <i class="icon ion-ios-arrow-right"></i>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteSport($index)"></ion-delete-button>
+        </ion-item>
+      </ion-list>
     </div>
   </ion-content>
 </ion-view>
