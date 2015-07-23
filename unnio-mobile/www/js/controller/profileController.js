@@ -1,7 +1,6 @@
 app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FIREBASECONFIG, SPORTS) {
 
   $scope.showLoading();
-
   var userProfileObj = $scope.getFirebaseObj($scope.uid, 'users', 'profile');
   var sportsArr = $scope.getFirebaseArray($scope.uid, 'users', 'profile/sports');
 
@@ -59,13 +58,14 @@ app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FIREBASECONF
   }
 
   $scope.addSport = function(){    
-    console.log($scope.modal);
+    $scope.showLoading();
     var sport = {
       name: $scope.modal.name,
       about: $scope.modal.about ? $scope.modal.about : null,
       level: $scope.modal.level
     }
     sportsArr.$add(sport).then(function(ref) {
+      $scope.hideLoading();
       $scope.closeModal();
     }).catch(function(error) {
       console.error("ERROR:", error);

@@ -1,8 +1,31 @@
 <ion-view view-title="{{name}}">
   <ion-content class="sport">
     <div class="list">
-      <div class="item avatar">
-        <div class="img" back-img="{{userProfile.avatar}}" /></div>
+      <div class="item-clear">
+        <p>You can edit you skill level and experience</p>
+      </div>
+      <div class="item item-input item-icon-right">
+        <span class="input-label">Sport</span>
+        <h2>{{sport.name}}</h2>
+        <i class="icon ion-locked item-note"></i>
+      </div>
+      <div class="item item-select">
+        <div class="input-label">
+          Skill level
+        </div>
+        <select ng-model="sport.level" required>
+          <option value="1">Newbie</option>
+          <option value="2">Advanced newbie</option>
+          <option value="3">Regular</option>
+          <option value="4">Good</option>
+          <option value="5">Very good</option>
+        </select>
+      </div>
+      <div class="item item-divider">
+        My experience on this sport
+      </div>
+      <div class="item item-input">
+        <textarea placeholder="Your experience in that sport" ng-model='sport.about'></textarea>
       </div>
     </div>
   </ion-content>

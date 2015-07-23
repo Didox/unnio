@@ -4,8 +4,10 @@ ion-content{
   background: #EEE;
 }
 
-.sideMenu i{
+ion-side-menu i{
   font-size: 20px;
+  color: #33cd5f;
+  margin-right: 5px;
 }
 
 .avatar{
@@ -17,14 +19,24 @@ ion-content{
   height: auto;
   clear: both;
   border-radius: 50%;
-  margin: 0 auto;
-  width: 90px;
-  height: 90px;
+  float:left;
+  width: 68px;
+  height: 68px;
+  margin-right: 15px;
   background-size: cover;
   background-position: center center;
+  border:2px solid white;
 }
-.profile h2{
-  width: 100%;
+.avatar h2 {
+  float: left;
+  color: white;
+  line-height: 70px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.avatar h2 span{
+  font-size: 14px;
+  color: #666;
 }
 .profile input{
   font-size: 16px;
@@ -37,7 +49,16 @@ ion-content{
 .item.item-toggle{
   padding: 8px 16px;
 }
+.item-clear{
+  background: none;
+  padding: 10px 15px 0 15px ;
+  color: #999;
+}
 
 select option{
   font-size: 30px;
+}
+
+textarea {
+  min-height: 100px;
 }
