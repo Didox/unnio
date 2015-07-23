@@ -7,7 +7,7 @@ app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $fireba
   $scope.init = function(){
     var urlRef = FIREBASECONFIG.url;
     var userRef = FIREBASECONFIG.users;
-    var sportsRef = FIREBASECONFIG.sports;
+    var connectionsRef = FIREBASECONFIG.connections;
     var authRef = new Firebase(urlRef);
     var authData = authRef.getAuth();
 
@@ -15,6 +15,9 @@ app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $fireba
       switch(ref) {
         case 'users':
           return userRef;
+        break;
+        case 'connections':
+          return connectionsRef;
         break;
         default:
           return urlRef;
@@ -49,7 +52,7 @@ app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $fireba
 
     $scope.showLoading = function() {
       $ionicLoading.show({
-        template: 'Loading...',
+        template: '<ion-spinner icon="lines"></ion-spinner>',
         hideOnStateChange: true
       });
     };

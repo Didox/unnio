@@ -1,21 +1,37 @@
 <ion-view view-title="{{userName}}">
+  <ion-nav-buttons side="right">
+    <button class="button button-dark add-sport" ng-click="sendRequestConnect(userProfile.uid)">
+      connect <i class="icon ion-shuffle"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
-      <div class="item avatar">
+      <div class="item avatar item-dark">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
-      </div>
-      <label class="item item-input">
-        <span class="input-label">Namne</span>
         <h2>{{userProfile.name}}</h2>
-      </label>
-      <label class="item item-input" ng-if="userProfile.nickname">
-        <span class="input-label">Nick</span>
+      </div>
+      <div class="item item-input" ng-if="userProfile.nickname">
+        <span class="input-label">Nickname</span>
         <h2>{{userProfile.nickname}}</h2>
-      </label>
-      <label class="item item-input" ng-if="userProfile.location">
+      </div>
+      <div class="item item-input" ng-if="userProfile.location">
         <span class="input-label">Location</span>
         <h2>{{userProfile.location}}</h2>
-      </label>
+      </div>
+      <div class="item item-input" ng-if="userProfile.age">
+        <span class="input-label">Age</span>
+        <h2>{{userProfile.age}}</h2>
+      </div>
+      <div class="item item-divider item-button-right">
+        Sports
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="sport in userProfile.sports" class="item-icon-right">
+          <h2>{{sport.name}}</h2>
+          <h2>{{sport.level}}</h2>
+          <p>{{sport.about}}</p>
+        </ion-item>
+      </ion-list>
     </div>
   </ion-content>
 </ion-view>

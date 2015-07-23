@@ -1,9 +1,14 @@
 <ion-view view-title="Profile">
   <ion-nav-buttons side="right">
-    <button class="button button-clear" ng-click="openModal()">add sport</button>
+    <button class="button button-dark add-sport" ng-click="openModal()">
+      add sport <i class="icon ion-plus"></i>
+    </button>
   </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
+      <div class="item item-message item-assertive item-icon-right" ng-if="sportsArr.length == 0">
+        <p>You should add one sport</p> <i class="icon ion-ios-undo"></i>
+      </div>
       <div class="item avatar item-dark">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
         <h2>{{userProfile.name}}</h2>

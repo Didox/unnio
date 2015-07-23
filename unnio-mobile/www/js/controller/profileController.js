@@ -42,6 +42,9 @@ app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FIREBASECONF
     userProfileObj.$loaded().then(function() {
       $scope.userProfile = userProfileObj;
       userProfileObj.$bindTo($scope, "userProfile");
+      if(!userProfileObj.sports){
+        $scope.openModal();
+      }
       $scope.hideLoading();
     })
     .catch(function(error) {
