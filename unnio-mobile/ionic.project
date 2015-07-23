@@ -1,4 +1,12 @@
 {
   "name": "unnio-ionic",
-  "app_id": "fb2d5357"
+  "app_id": "fb2d5357",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

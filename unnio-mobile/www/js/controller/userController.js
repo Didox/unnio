@@ -1,4 +1,4 @@
-app.controller('UserCtrl', function($scope, $state, $stateParams) {
+app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, $timeout) {
   $scope.showLoading(); 
 
   $scope.userName = $stateParams.name;
@@ -13,26 +13,46 @@ app.controller('UserCtrl', function($scope, $state, $stateParams) {
     console.error("ERROR:", error);
   });
 
+  // var alertPopup = $ionicPopup.alert({
+  //   title: 'Don\'t eat that!',
+  //   template: 'It might taste good'
+  // });
+
   $scope.sendRequestConnect = function(uid){
     var userLoggedConnection = $scope.getFirebaseObj($scope.uid, 'connections', uid);
     var userConnection = $scope.getFirebaseObj(uid, 'connections', $scope.uid);
-
+    var checkCount = 0;
     userLoggedConnection.$loaded().then(function() {
-      userLoggedConnection.status = "pending";
-      userLoggedConnection.$save();
+      userConnection.$loaded().then(function() {
+
+        userConnection.status = "teste";
+        userLoggedConnection.status = "teste";
+
+        userConnection.$save().then(function() {
+
+          userLoggedConnection.$save().then(function() {
+            $ionicPopup.alert({
+               title: 'Request send!',
+               template: 'It might taste good'
+             });
+          })
+          .catch(function(error) {
+            console.log("ERROR:", error);
+          });
+        })
+        .catch(function(error) {
+          console.log("ERROR:", error);
+        });
+
+
+      })
+      .catch(function(error) {
+        console.log("ERROR:", error);
+      });
     })
     .catch(function(error) {
       console.log("ERROR:", error);
     });
-
-    userConnection.$loaded().then(function() {
-      userConnection.status = "pending";
-      userConnection.$save();
-    })
-    .catch(function(error) {
-      console.log("ERROR:", error);
-    });
-
   }
 
 });

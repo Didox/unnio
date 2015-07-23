@@ -1,8 +1,6 @@
 angular.module('starter.controllers', []);
 
-app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $firebaseAuth, $firebaseObject, $firebaseArray, $ionicLoading, $ionicModal, FIREBASECONFIG) {
-
-  $scope.loggedUser = $rootScope.loggedUser;
+app.controller('AppCtrl', function($scope,  $state, $window, $firebaseObject, $firebaseArray, $ionicLoading, $cordovaGoogleAnalytics, FIREBASECONFIG) {
 
   $scope.init = function(){
     var urlRef = FIREBASECONFIG.url;
@@ -25,12 +23,11 @@ app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $fireba
     }
 
     //Função para verificar se o usuário está logado
-    $scope.usuarioLogado = function(authData){
+    $scope.loggedUser = function(authData){
       if (authData) {
         return authData.uid;
       } else {
         $state.go('login');
-        return false;
       }
     }
 
@@ -50,9 +47,9 @@ app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $fireba
       return arr;
     }
 
-    $scope.showLoading = function() {
+    $scope.showLoading = function(msg) {
       $ionicLoading.show({
-        template: '<ion-spinner icon="lines"></ion-spinner>',
+        template: '<ion-spinner icon="lines"></ion-spinner><p>'+msg+'</p>',
         hideOnStateChange: true
       });
     };
@@ -68,14 +65,11 @@ app.controller('AppCtrl', function($scope, $rootScope,  $state, $window, $fireba
     };
 
     //Chama a função para verificar usuário logado, e atribui o uid, para todo o escopo /app
-    $scope.uid = $scope.usuarioLogado(authData);
+    $scope.uid = $scope.loggedUser(authData);
+    //$cordovaGoogleAnalytics.startTrackerWithId('UA-65523419-1');
+    //$cordovaGoogleAnalytics.setUserId($scope.uid);
   }
 
   $scope.init();
-
-  if(!$scope.uid){
-    $scope.init();
-  }
-  
 
 });

@@ -12,9 +12,10 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
 
   //methods
   var prepareSearch = function(){
-    $scope.showLoading();
+    $scope.showLoading("Loading... doing a big query bro!");
     userLoggedProfileObj.$loaded().then(function() {
       userLoggedSportsArr = getUserSports(userLoggedProfileObj.sports);
+      console.log($cordovaGeolocation);
       $cordovaGeolocation.getCurrentPosition({ timeout: 10000, enableHighAccuracy: false}).then(function(position) {
         geoFire.set($scope.uid, [position.coords.latitude, position.coords.longitude]).then(function() {
           latUser = position.coords.latitude;

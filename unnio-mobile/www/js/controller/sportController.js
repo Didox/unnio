@@ -1,4 +1,4 @@
-app.controller('SportCtrl', function($scope, $stateParams, $ionicHistory) {
+app.controller('SportCtrl', function($scope, $stateParams) {
   $scope.showLoading();
   $scope.sid = $stateParams;
   $scope.name = $stateParams.name;
@@ -14,9 +14,5 @@ app.controller('SportCtrl', function($scope, $stateParams, $ionicHistory) {
   .catch(function(error) {
     console.error("ERROR:", error);
   });
-
-  $scope.goBack = function(){
-    $ionicHistory.goBack();
-  }
   
 });

@@ -8,8 +8,8 @@ $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
+$balanced:                        #ff5e00 !default;
+$energized:                       #f96000 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
@@ -21,3 +21,122 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+/* Empty. Add your own CSS if you like */
+
+ion-content{
+  background: $stable;
+}
+
+ion-side-menu .item
+
+ion-side-menu i{
+  font-size: 20px;
+  color: white;
+  margin-right: 5px;
+}
+
+ion-header-bar .title{
+  font-size: 18px!important;
+}
+
+.fleft{
+  float:left;
+}
+.fright{
+  float:right;
+}
+
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #FFF;
+  fill: #FFF;
+}
+
+.item-divider {
+  color: #444;
+}
+
+.item.item-dark {
+  border-color:#CCC;
+}
+
+.item.item-toggle{
+  padding: 8px 16px;
+}
+.item-clear{
+  background: none;
+  padding: 10px 15px 0 15px ;
+  color: #999;
+}
+.item-message p{
+  text-align: right;
+  padding-right: 30px;
+  color: #444;
+  font-size: 16px;
+  position: relative;
+}
+.item-message i{
+  transform: rotate(89deg);
+  margin-right: 35px;
+  top:-8px!important;
+}
+
+h1,h2,h3,h4,h5,h6, p{
+  color: #444;
+}
+
+.add-sport i{
+  font-size: 14px;
+  line-height: 32px;
+}
+
+.add-sport i:before{
+  font-size: 20px!important;
+  line-height: 32px!important;
+}
+
+.avatar{
+  background-color: #EEE;
+}
+.avatar .img{
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+  clear: both;
+  border-radius: 50%;
+  float:left;
+  width: 68px;
+  height: 68px;
+  margin-right: 15px;
+  background-size: cover;
+  background-position: center center;
+  border:2px solid white;
+}
+.avatar h2 {
+  float: left;
+  color: white;
+  line-height: 70px;
+  font-size: 22px;
+  font-weight: bold;
+}
+.avatar h2 span{
+  font-size: 14px;
+  color: #666;
+}
+
+.profile input{
+  font-size: 16px;
+}
+
+.profile .item-divider{
+  line-height: 32px;
+}
+
+select option{
+  font-size: 30px;
+}
+
+textarea {
+  min-height: 100px;
+}

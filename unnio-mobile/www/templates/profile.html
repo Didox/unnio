@@ -1,13 +1,13 @@
 <ion-view view-title="Profile">
   <ion-nav-buttons side="right">
-    <button class="button button-dark add-sport" ng-click="openModal()">
+    <button class="button button-clear add-sport" ng-click="openModal()">
       add sport <i class="icon ion-plus"></i>
     </button>
   </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
-      <div class="item item-message item-assertive item-icon-right" ng-if="sportsArr.length == 0">
-        <p>You should add one sport</p> <i class="icon ion-ios-undo"></i>
+      <div class="item item-message item-light item-icon-right" ng-if="sportsArr.length == 0">
+        <p>You should add a sport</p> <i class="icon ion-ios-undo"></i>
       </div>
       <div class="item avatar item-dark">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
@@ -26,13 +26,13 @@
         <input type="tel" ng-model="userProfile.location" placeholder="City, state">
       </label>
       <div class="item item-divider">Search options</div>
-      <label class="item range range-balanced">
+      <label class="item range range-energized">
         <span class="input-label">Range {{userProfile.searchRange}} km </span>
         <input type="range" ng-model="userProfile.searchRange" min="0" max="30">
       </label>
       <div class="item item-toggle">
         <span class="input-label">Hidden profile</span>
-        <label class="toggle toggle-balanced">
+        <label class="toggle toggle-energized">
           <input type="checkbox" ng-model="userProfile.hidden">
           <div class="track">
             <div class="handle"></div>

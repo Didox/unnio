@@ -1,5 +1,5 @@
 <ion-modal-view>
-  <ion-header-bar>
+  <ion-header-bar class="bar-energized">
     <h1 class="title">Add new sport</h1>
     <button class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></button>
   </ion-header-bar>
@@ -29,7 +29,7 @@
         <textarea placeholder="Your experience in that sport" ng-model='modal.about'></textarea>
       </label>
       <div class="item">
-        <button class="button button-block button-balanced" ng-click="addSport()">save</button>
+        <button class="right button button-energized fright" ng-click="addSport()"><strong>save</strong></button>
       </div>
     </div>
   </ion-content>
