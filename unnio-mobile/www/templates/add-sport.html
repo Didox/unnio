@@ -13,11 +13,14 @@
           <option ng-repeat="option in modal.options" value="{{option.key}}">{{option.value}}</option>
         </select>
       </label>
+      <div class="item item-message item-assertive item-light item-icon-right" ng-if="modal.error">
+        <p>You should add a sport</p> <i class="icon ion-ios-undo"></i>
+      </div>
       <label class="item item-select">
         <div class="input-label">
           Skill level
         </div>
-        <select ng-model="modal.level" required>
+        <select ng-model="modal.level" id="selectlevel" required>
           <option value="1">Newbie</option>
           <option value="2">Advanced newbie</option>
           <option value="3">Regular</option>
@@ -27,6 +30,7 @@
       </label>
       <label class="item item-input">
         <textarea placeholder="Your experience in that sport" ng-model='modal.about'></textarea>
+        <input type="hidden" ng-model="modal.nicename">
       </label>
       <div class="item">
         <button class="right button button-energized fright" ng-click="addSport()"><strong>save</strong></button>

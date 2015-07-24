@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'starter.controllers', 'ngCordova', 'firebase', 'ngCordovaOauth']);
+var app = angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'starter.controllers', 'ngCordova', 'ngCordovaOauth', 'utils-service']);
 
 app.directive('backImg', function(){
   return function(scope, element, attrs){
@@ -91,6 +91,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       'menuContent': {
         templateUrl: 'templates/search.html',
         controller: 'SearchCtrl'
+      }
+    }
+  })
+
+  .state('app.connections', {
+    url: '/connections',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/connections.html',
+        controller: 'ConnectionsCtrl'
       }
     }
   })

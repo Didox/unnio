@@ -1,0 +1,52 @@
+<ion-view view-title="Connections">
+  <ion-content  class="connections">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="list">
+      <div class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Filter connections" ng-model='filterKey'>
+      </div>
+      <div class="item item-divider item-button-right" ng-if="pendings.length > 0">
+        Pending
+        <button class="button button-clear " ng-click="listConfig.shouldShowDeletePendings = !listConfig.shouldShowDeletePendings">
+          {{listConfig.shouldShowDeletePendings ? 'done' : 'refuse'}}
+        </button>
+      </div>
+      <ion-list show-delete="listConfig.shouldShowDeletePendings" show-reorder="false" can-swipe="false">
+        <ion-item class="item avatar" ng-repeat="user in pendings | filter:filterKey">
+          <div class="img" back-img="{{user.avatar}}"></div>
+          <div class="info">
+            <h2>{{user.name}} {{user.name}}</h2>
+            <p>{{user.name}}</p>
+          </div>
+          <div class="buttons">
+            <button class="button button-balanced accept">Accept</button>
+            <a class="button button-positive profile" ng-href="#/app/user/{{user.uid}}/{{user.name}}">Profile</a>
+          </div>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteSport($index)"></ion-delete-button>
+        </ion-item>
+      </ion-list>
+      <div class="item item-divider item-button-right" ng-if="connections.length > 0">
+        Connected
+        <button class="button button-clear" ng-click="listConfig.shouldShowDeleteConnections = !listConfig.shouldShowDeleteConnections">
+          {{listConfig.shouldShowDeleteConnections ? 'done' : 'remove'}}
+        </button>
+      </div>
+      <ion-list show-delete="listConfig.shouldShowDeleteConnections">
+        <ion-item class="item avatar item-stable" collection-repeat="userCon in connections | filter:filterKey">
+          <div class="img" back-img="{{userCon.avatar}}"></div>
+          <div class="info">
+            <h2>{{userCon.name}}</h2>
+            <p>{{userCon.name}}</p>
+          </div>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteSport($index)"></ion-delete-button>
+          <button class="button button-positive fright">Accept</button>
+          <button class="button button-positive fright">Profile</button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

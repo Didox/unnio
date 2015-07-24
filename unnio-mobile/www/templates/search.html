@@ -5,7 +5,11 @@
       on-refresh="doRefresh()">
     </ion-refresher>
     <ion-list>
-      <ion-item class="item item-avatar item-icon-right" collection-repeat="result in searchResults" href="#/app/user/{{result.uid}}/{{result.name}}">
+      <div class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Filter results" ng-model='filterKey'>
+      </div>
+      <ion-item class="item item-avatar item-icon-right" collection-repeat="result in searchResults | filter:filterKey" href="#/app/user/{{result.uid}}/{{result.name}}">
         <img ng-src="{{result.avatar}}">
         <h2>{{result.name}}</h2>
         <p>{{result.distance}}</p>

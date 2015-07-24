@@ -1,14 +1,15 @@
-app.controller('LoginCtrl', function($scope, $location, $state, $firebaseAuth, $firebaseObject, $cordovaOauth, $cordovaFacebook, $cordovaGoogleAnalytics, FIREBASECONFIG, $ionicPlatform) {
+app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $cordovaFacebook, FirebaseData, FIREBASECONFIG) {
 
   var ref = new Firebase(FIREBASECONFIG.url);
   var auth = $firebaseAuth(ref);
-  var userRef = FIREBASECONFIG.users;
-  var userData = new Firebase(userRef);
 
   $scope.loginWeb = function () {
     auth.$authWithOAuthPopup('facebook').then(function(authData) {
       $scope.uid = authData.uid;
-      var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));
+      
+      var user = FirebaseData('users', $scope.uid, '/');
+      var userProfileObj = user.data;
+
       userProfileObj.$loaded().then(function() {
         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
@@ -26,41 +27,5 @@ app.controller('LoginCtrl', function($scope, $location, $state, $firebaseAuth, $
     });
 
   };
-
-  // $scope.loginApp = function() {
-  //   $cordovaOauth.facebook('719219301536939', ['email']).then(function(result) {
-  //     auth.$authWithOAuthToken('facebook', result.access_token).then(function(authData) {
-  //       $scope.uid = authData.uid;
-  //       var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));
-  //       userProfileObj.$loaded().then(function() {
-          
-  //         userProfileObj.email = authData.facebook.cachedUserProfile.email;
-  //         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
-  //         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
-
-  //         userProfileObj.$save().then(function(ref) {
-  //           $rootScope.loggedUser = userProfileObj;
-  //           $state.go('app.profile');
-  //         })
-  //         .catch(function(error) {
-  //           console.error("ERROR:", error);
-  //         });
-  //       })
-  //       .catch(function(error) {
-  //         console.error('ERROR: ', error);
-  //         $state.go('login');
-  //       });
-  //     }).catch(function(error) {
-  //       console.error('ERROR: ', error);
-  //       $state.go('login');
-  //     });
-  //   }).catch(function(error) {
-  //     console.log('ERROR: ', error);
-  //     $state.go('login');
-  //   });
-  // }
-  $ionicPlatform.ready(function() {
-    //$cordovaGoogleAnalytics.startTrackerWithId('UA-65523419-1');
-  });
 
 });

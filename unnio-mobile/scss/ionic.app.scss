@@ -9,11 +9,34 @@ $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #ff5e00 !default;
-$energized:                       #f96000 !default;
+$energized:                       #97c00e !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+
+/* colors to override */
+
+$energized:                       #97c00e !default;
+$button-energized-text:           #444 !default;
+
+ion-header-bar .button-icon, .button i, .back-button{
+  color:#444!important;
+}
+.add-sport i{
+  color:#444!important;
+}
+ion-side-menu i{
+  color: !important;
+}
+
+h1,h2,h3,h4,h5,h6, p{
+  color: #444;
+}
+
+.item-divider {
+  color: #444;
+}
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -23,27 +46,28 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 /* Empty. Add your own CSS if you like */
 
-ion-content{
-  background: $stable;
+.fleft{
+  float:left;
 }
-
-ion-side-menu .item
-
-ion-side-menu i{
-  font-size: 20px;
-  color: white;
-  margin-right: 5px;
+.fright{
+  float:right;
 }
 
 ion-header-bar .title{
   font-size: 18px!important;
 }
 
-.fleft{
-  float:left;
+ion-header-bar.bar-dark .title{
+  text-align:left;
 }
-.fright{
-  float:right;
+
+ion-side-menu i{
+  font-size: 21px;
+  margin-right: 5px;
+}
+
+ion-content{
+  background: $stable;
 }
 
 .spinner svg {
@@ -53,14 +77,14 @@ ion-header-bar .title{
   fill: #FFF;
 }
 
-.item-divider {
-  color: #444;
+.spinner-msg {
+  color:#ccc!important;
 }
+
 
 .item.item-dark {
   border-color:#CCC;
 }
-
 .item.item-toggle{
   padding: 8px 16px;
 }
@@ -72,7 +96,7 @@ ion-header-bar .title{
 .item-message p{
   text-align: right;
   padding-right: 30px;
-  color: #444;
+  color: white;
   font-size: 16px;
   position: relative;
 }
@@ -81,13 +105,19 @@ ion-header-bar .title{
   margin-right: 35px;
   top:-8px!important;
 }
-
-h1,h2,h3,h4,h5,h6, p{
-  color: #444;
+.item-divider.item-button-right button{
+  min-height:16px;
+  top:0;
+  color:#444;
 }
 
+
+.add-sport{
+  color:#444!important;
+}
 .add-sport i{
   font-size: 14px;
+  color:#444;
   line-height: 32px;
 }
 
@@ -95,6 +125,7 @@ h1,h2,h3,h4,h5,h6, p{
   font-size: 20px!important;
   line-height: 32px!important;
 }
+
 
 .avatar{
   background-color: #EEE;
@@ -108,7 +139,7 @@ h1,h2,h3,h4,h5,h6, p{
   float:left;
   width: 68px;
   height: 68px;
-  margin-right: 15px;
+  margin-right: 5px;
   background-size: cover;
   background-position: center center;
   border:2px solid white;
@@ -124,13 +155,51 @@ h1,h2,h3,h4,h5,h6, p{
   font-size: 14px;
   color: #666;
 }
-
-.profile input{
-  font-size: 16px;
+.connections .avatar .img{
+  width: 47px;
+  height: 47px;
+}
+.connections .info{
+  float:left;
+  max-width:150px;
+}
+.connections .avatar h2 {
+  font-size:18px;
+  width:100%;
+  color: #444;
+  line-height: 22px;
+}
+.connections .avatar p{
+  font-size:14px;
+  width:100%;
+  color: #999;
+  line-height: 18px;
 }
 
-.profile .item-divider{
-  line-height: 32px;
+.connections .item-content {
+  padding-right:16px!important;
+}
+
+.connections .buttons .button{
+  position:absolute;
+  right: 10px;
+  top:7px;
+  display:inline-block!important;
+  width:80px;
+  text-align:center;
+  font-size:14px;
+  line-height:30px;
+  height:30px;
+  min-height:30px;
+}
+
+.connections .buttons .button.accept{
+  position:absolute;
+  top: 43px;
+}
+
+input{
+  font-size:16px!important;
 }
 
 select option{

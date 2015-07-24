@@ -1,8 +1,9 @@
-app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FIREBASECONFIG, SPORTS) {
+app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FirebaseData, SPORTS) {
 
-  $scope.showLoading();
-  var userProfileObj = $scope.getFirebaseObj($scope.uid, 'users', 'profile');
-  var sportsArr = $scope.getFirebaseArray($scope.uid, 'users', 'profile/sports');
+  $scope.showLoading("Loading profile...");
+
+  var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
+  var sportsArr = sports.data;
 
   $scope.listConfig = {
     shouldShowDelete : false
@@ -26,23 +27,13 @@ app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FIREBASECONF
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    $scope.modal.about = '';
-    $scope.modal.sport = '';
-    $scope.modal.level = '';
-  });
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-  });
 
   $scope.loadUser = function(){
-
-    userProfileObj.$loaded().then(function() {
-      $scope.userProfile = userProfileObj;
-      userProfileObj.$bindTo($scope, "userProfile");
-      if(!userProfileObj.sports){
+    var userProfileObj = new FirebaseData('users', $scope.uid, 'profile');
+    userProfileObj.data.$loaded().then(function() {
+      $scope.userProfile = userProfileObj.data;
+      userProfileObj.data.$bindTo($scope, "userProfile");
+      if(!userProfileObj.data.sports){
         $scope.openModal();
       }
       $scope.hideLoading();
@@ -61,18 +52,28 @@ app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FIREBASECONF
   }
 
   $scope.addSport = function(){    
-    $scope.showLoading();
-    var sport = {
-      name: $scope.modal.name,
-      about: $scope.modal.about ? $scope.modal.about : null,
-      level: $scope.modal.level
-    }
-    sportsArr.$add(sport).then(function(ref) {
+    $scope.showLoading("Adding new sport...");
+    $scope.modal.error = false;
+    var sport = {};
+    if($scope.modal.name){
+      angular.forEach($scope.modal.options, function(option) {
+        if($scope.modal.name == option.key){
+          sport.name = option.value;
+          sport.key = $scope.modal.name;
+          sport.about = $scope.modal.about ? $scope.modal.about : "-";
+          sport.level = $scope.modal.level ? $scope.modal.level : 1;
+          sportsArr.$add(sport).then(function(ref) {
+            $scope.hideLoading();
+            $scope.closeModal();
+          }).catch(function(error) {
+            console.error("ERROR:", error);
+          });
+        }
+      });
+    }else{
       $scope.hideLoading();
-      $scope.closeModal();
-    }).catch(function(error) {
-      console.error("ERROR:", error);
-    });
+      $scope.modal.error = true;
+    }
 
   }
 

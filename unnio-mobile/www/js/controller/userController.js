@@ -1,11 +1,12 @@
-app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, $timeout) {
+app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, FirebaseData) {
   $scope.showLoading(); 
 
   $scope.userName = $stateParams.name;
   var userUid = $stateParams.userUid;
-  var userObj = $scope.getFirebaseObj(userUid, 'users', '/');
-  userObj.$loaded().then(function() {
-    $scope.userProfile = userObj.profile;
+  var userObj = new FirebaseData('users', userUid, '/');
+
+  userObj.data.$loaded().then(function() {
+    $scope.userProfile = userObj.data.profile;
     $scope.userProfile.uid = userUid;
     $scope.hideLoading();
   })
@@ -13,24 +14,19 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, $
     console.error("ERROR:", error);
   });
 
-  // var alertPopup = $ionicPopup.alert({
-  //   title: 'Don\'t eat that!',
-  //   template: 'It might taste good'
-  // });
-
   $scope.sendRequestConnect = function(uid){
-    var userLoggedConnection = $scope.getFirebaseObj($scope.uid, 'connections', uid);
-    var userConnection = $scope.getFirebaseObj(uid, 'connections', $scope.uid);
-    var checkCount = 0;
-    userLoggedConnection.$loaded().then(function() {
-      userConnection.$loaded().then(function() {
+    var userLoggedConnection = FirebaseData('connections', $scope.uid, uid);
+    var userConnection = FirebaseData('connections', uid, $scope.uid);
+    
+    userLoggedConnection.data.$loaded().then(function() {
+      userConnection.data.$loaded().then(function() {
 
-        userConnection.status = "teste";
-        userLoggedConnection.status = "teste";
+        userConnection.data.status = "pending";
+        userLoggedConnection.data.status = "pending";
 
-        userConnection.$save().then(function() {
+        userConnection.data.$save().then(function() {
 
-          userLoggedConnection.$save().then(function() {
+          userLoggedConnection.data.$save().then(function() {
             $ionicPopup.alert({
                title: 'Request send!',
                template: 'It might taste good'

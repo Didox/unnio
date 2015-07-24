@@ -6,7 +6,7 @@
   </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
-      <div class="item item-message item-light item-icon-right" ng-if="sportsArr.length == 0">
+      <div class="item item-message item-assertive item-light item-icon-right" ng-if="sportsArr.length == 0">
         <p>You should add a sport</p> <i class="icon ion-ios-undo"></i>
       </div>
       <div class="item avatar item-dark">
@@ -42,7 +42,7 @@
       <div class="item item-divider item-button-right" ng-if="sportsArr.length > 0">
         My Sports
         <button class="button button-clear button-dark" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
-          {{listConfig.shouldShowDelete ? 'cancel' : 'edit'}}
+          {{listConfig.shouldShowDelete ? 'done' : 'remove'}}
         </button>
       </div>
       <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="false">

@@ -7,7 +7,7 @@ $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
-$energized:                       #f96000 !default;
+$energized:                       #97c00e !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
@@ -129,7 +129,7 @@ $button-balanced-active-bg:       darken($balanced, 10%) !default;
 $button-balanced-active-border:   darken($balanced, 10%) !default;
 
 $button-energized-bg:             $energized !default;
-$button-energized-text:           #fff !default;
+$button-energized-text:           #444 !default;
 $button-energized-border:         darken($energized, 5%) !default;
 $button-energized-active-bg:      darken($energized, 5%) !default;
 $button-energized-active-border:  darken($energized, 5%) !default;
