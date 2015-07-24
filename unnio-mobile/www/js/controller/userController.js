@@ -1,5 +1,5 @@
 app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, FirebaseData) {
-  $scope.showLoading(); 
+  $scope.showLoading("Loading user information"); 
 
   $scope.userName = $stateParams.name;
   var userUid = $stateParams.userUid;
@@ -15,31 +15,53 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, F
   });
 
   $scope.sendRequestConnect = function(uid){
-    var userLoggedConnection = FirebaseData('connections', $scope.uid, uid);
-    var userConnection = FirebaseData('connections', uid, $scope.uid);
+    var userLoggedConnection = FirebaseData('connections', $scope.uid, 'pending/' + uid);
+    var userConnection = FirebaseData('connections', uid, 'pending/' + $scope.uid);
     
     userLoggedConnection.data.$loaded().then(function() {
       userConnection.data.$loaded().then(function() {
 
-        userConnection.data.status = "pending";
-        userLoggedConnection.data.status = "pending";
+        $scope.popup = {}
 
-        userConnection.data.$save().then(function() {
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+          template: '<input type="password" ng-model="popup.msg">',
+          title: 'Enter Wi-Fi Password',
+          subTitle: 'Please use normal things',
+          scope: $scope,
+          buttons: [
+            { text: 'Cancel' },
+            {
+              text: '<b>Save</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                if (!$scope.popup.msg) {
+                  //don't allow the user to close unless he enters wifi password
+                  e.preventDefault();
+                } else {
+                  return $scope.popup.msg;
+                }
+              }
+            }
+          ]
+        });
 
-          userLoggedConnection.data.$save().then(function() {
-            $ionicPopup.alert({
-               title: 'Request send!',
-               template: 'It might taste good'
-             });
+        myPopup.then(function(res) {
+          userConnection.data.status = $scope.popup.msg;
+          userLoggedConnection.data.status = false;
+          userConnection.data.$save().then(function() {
+            userLoggedConnection.data.$save().then(function() {
+
+            })
+            .catch(function(error) {
+              console.log("ERROR:", error);
+            });
+
           })
           .catch(function(error) {
             console.log("ERROR:", error);
           });
-        })
-        .catch(function(error) {
-          console.log("ERROR:", error);
         });
-
 
       })
       .catch(function(error) {

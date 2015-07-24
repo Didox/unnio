@@ -97,7 +97,7 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
     }
   };
 
-  $scope.doRefresh = function() {
+  $scope.reloadRoute = function() {
     searchResults = [];
     prepareSearch();
   };

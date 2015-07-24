@@ -1,8 +1,13 @@
 <ion-view view-title="Search">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear add-sport" ng-click="reloadRoute()">
+      <i class="icon ion-ios-refresh-empty"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-refresher
       pulling-text="Pull to refresh..."
-      on-refresh="doRefresh()">
+      on-refresh="reloadRoute()">
     </ion-refresher>
     <ion-list>
       <div class="item item-input">

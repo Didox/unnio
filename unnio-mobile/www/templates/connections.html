@@ -1,8 +1,13 @@
 <ion-view view-title="Connections">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear add-sport" ng-click="reloadRoute()">
+      <i class="icon ion-ios-refresh-empty"></i>
+    </button>
+  </ion-nav-buttons>
   <ion-content  class="connections">
     <ion-refresher
       pulling-text="Pull to refresh..."
-      on-refresh="doRefresh()">
+      on-refresh="reloadRoute()">
     </ion-refresher>
     <div class="list">
       <div class="item item-input">
@@ -15,18 +20,18 @@
           {{listConfig.shouldShowDeletePendings ? 'done' : 'refuse'}}
         </button>
       </div>
-      <ion-list show-delete="listConfig.shouldShowDeletePendings" show-reorder="false" can-swipe="false">
+      <ion-list class="pendings" show-delete="listConfig.shouldShowDeletePendings" show-reorder="false" can-swipe="false">
         <ion-item class="item avatar" ng-repeat="user in pendings | filter:filterKey">
           <div class="img" back-img="{{user.avatar}}"></div>
           <div class="info">
-            <h2>{{user.name}} {{user.name}}</h2>
-            <p>{{user.name}}</p>
+            <h2>{{user.name}}</h2>
+            <p ng-if="user.status">{{user.status}}</p>
           </div>
           <div class="buttons">
-            <button class="button button-balanced accept">Accept</button>
+            <button class="button button-balanced accept" ng-click="acceptConnection(user.uid, $index)" ng-if="user.status">Accept</button>
             <a class="button button-positive profile" ng-href="#/app/user/{{user.uid}}/{{user.name}}">Profile</a>
           </div>
-          <ion-delete-button class="ion-minus-circled" ng-click="deleteSport($index)"></ion-delete-button>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteConnection(user.uid, uid, $index, pendings, 'pending')"></ion-delete-button>
         </ion-item>
       </ion-list>
       <div class="item item-divider item-button-right" ng-if="connections.length > 0">
@@ -42,9 +47,11 @@
             <h2>{{userCon.name}}</h2>
             <p>{{userCon.name}}</p>
           </div>
-          <ion-delete-button class="ion-minus-circled" ng-click="deleteSport($index)"></ion-delete-button>
-          <button class="button button-positive fright">Accept</button>
-          <button class="button button-positive fright">Profile</button>
+          <div class="buttons">
+            <button class="button button-stable accept" ng-click="acceptConnection(user.uid)">Rate</button>
+            <a class="button button-positive profile" ng-href="#/app/user/{{userCon.uid}}/{{userCon.name}}">Profile</a>
+          </div>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteConnection(userCon.uid, uid, $index, connections, 'conected')"></ion-delete-button>
         </ion-item>
       </ion-list>
     </div>
