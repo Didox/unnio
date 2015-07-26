@@ -7,7 +7,7 @@ app.controller('SportCtrl', function($scope, $stateParams, FirebaseData) {
   var sid = $stateParams.sid;
   var path = 'profile/sports/' + sid;
   var sports = new FirebaseData('users', $scope.uid, path);
-  var sportObj = sports.data;
+  var sportObj = sports;
 
   sportObj.$loaded().then(function() {
     $scope.sport = sportObj;

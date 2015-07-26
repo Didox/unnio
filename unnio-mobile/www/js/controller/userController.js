@@ -1,12 +1,12 @@
-app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, FirebaseData) {
+app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicPopup, FirebaseData) {
   $scope.showLoading("Loading user information"); 
 
   $scope.userName = $stateParams.name;
   var userUid = $stateParams.userUid;
   var userObj = new FirebaseData('users', userUid, '/');
 
-  userObj.data.$loaded().then(function() {
-    $scope.userProfile = userObj.data.profile;
+  userObj.$loaded().then(function() {
+    $scope.userProfile = userObj.profile;
     $scope.userProfile.uid = userUid;
     $scope.hideLoading();
   })
@@ -14,44 +14,36 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, F
     console.error("ERROR:", error);
   });
 
-  $scope.sendRequestConnect = function(uid){
-    var userLoggedConnection = FirebaseData('connections', $scope.uid, 'pending/' + uid);
-    var userConnection = FirebaseData('connections', uid, 'pending/' + $scope.uid);
+  $ionicModal.fromTemplateUrl('templates/modal/add-friend.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+    $scope.modal.uid = $stateParams.userUid;
+  });
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+  $scope.sendFriendRequest = function(uid){
+    var userLoggedConnection = FirebaseData('friends', $scope.uid, 'pending/' + uid);
+    var userConnection = FirebaseData('friends', uid, 'pending/' + $scope.uid);
     
-    userLoggedConnection.data.$loaded().then(function() {
-      userConnection.data.$loaded().then(function() {
-
-        $scope.popup = {}
-
-        // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-          template: '<input type="password" ng-model="popup.msg">',
-          title: 'Enter Wi-Fi Password',
-          subTitle: 'Please use normal things',
-          scope: $scope,
-          buttons: [
-            { text: 'Cancel' },
-            {
-              text: '<b>Save</b>',
-              type: 'button-positive',
-              onTap: function(e) {
-                if (!$scope.popup.msg) {
-                  //don't allow the user to close unless he enters wifi password
-                  e.preventDefault();
-                } else {
-                  return $scope.popup.msg;
-                }
-              }
-            }
-          ]
-        });
-
-        myPopup.then(function(res) {
-          userConnection.data.status = $scope.popup.msg;
-          userLoggedConnection.data.status = false;
-          userConnection.data.$save().then(function() {
-            userLoggedConnection.data.$save().then(function() {
-
+    userLoggedConnection.$loaded().then(function() {
+      userConnection.$loaded().then(function() {
+          userConnection.status = $scope.modal.msg;
+          userLoggedConnection.status = false;
+          userConnection.$save().then(function() {
+            userLoggedConnection.$save().then(function() {
+              $scope.closeModal();
             })
             .catch(function(error) {
               console.log("ERROR:", error);
@@ -61,8 +53,6 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicPopup, F
           .catch(function(error) {
             console.log("ERROR:", error);
           });
-        });
-
       })
       .catch(function(error) {
         console.log("ERROR:", error);

@@ -1,0 +1,24 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-energized">
+    <h1 class="title">Friend Request</h1>
+    <button class="button button-clear" ng-click="closeModalRequest()">close</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider">
+        Message
+      </div>
+      <label class="item item-stable">
+        <span>{{modalRequest.status}}</span>
+      </label>
+      <div class="item">
+        <button class="right button button-block button-energized fright" ng-click="closeModalRequest()"><strong>close</strong></button>
+      </div>
+
+      <button class="button button-balanced" ng-click="">Accepet</button>
+      <button class="button button-assertive" ng-click="">Refuse</button>
+      <button class="button button-stable" ng-click="">Cancel</button>
+
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,40 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-energized">
+    <h1 class="title">Feedback</h1>
+    <button class="button button-clear" ng-click="closeModal()">cancel</button>
+  </ion-header-bar>
+  <ion-content class="feedback">
+    <div class="list">
+      <div class="row">
+        <div class="col col-50">
+  
+          <label class="item item-radio balanced">
+            <input type="radio" name="group">
+            <div class="item-content">
+              Positive
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        
+        </div>
+        <div class="col col-50">
+          <label class="item item-radio assertive">
+            <input type="radio" name="group">
+            <div class="item-content">
+              Negative
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="list">
+      <label class="item item-input">
+        <textarea maxlength="140" placeholder="Some few words about this player" ng-model='modal.msg'></textarea>
+      </label>
+      <div class="item">
+        <button class="right button button-block button-energized fright" ng-click="sendFriendRequest(modal.uid)"><strong>send request</strong></button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

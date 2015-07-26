@@ -1,17 +1,18 @@
 <ion-view view-title="Profile">
-  <ion-nav-buttons side="right">
-    <button class="button button-clear add-sport" ng-click="openModal()">
-      add sport <i class="icon ion-plus"></i>
-    </button>
-  </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
       <div class="item item-message item-assertive item-light item-icon-right" ng-if="sportsArr.length == 0">
-        <p>You should add a sport</p> <i class="icon ion-ios-undo"></i>
+        You should add a sport
       </div>
-      <div class="item avatar item-dark">
+      <div class="item item-energized item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
         <h2>{{userProfile.name}}</h2>
+        <div class="buttons">
+          <a ng-click="openModal()" href="#">
+            <i class="icon ion-ios-plus-outline"></i>
+            <p>add sport</p>
+          </a>
+        </div>
       </div>
       <label class="item item-input">
         <span class="input-label">Nick</span>
@@ -30,15 +31,6 @@
         <span class="input-label">Range {{userProfile.searchRange}} km </span>
         <input type="range" ng-model="userProfile.searchRange" min="0" max="30">
       </label>
-      <div class="item item-toggle">
-        <span class="input-label">Hidden profile</span>
-        <label class="toggle toggle-energized">
-          <input type="checkbox" ng-model="userProfile.hidden">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
-        </label>
-      </div>
       <div class="item item-divider item-button-right" ng-if="sportsArr.length > 0">
         My Sports
         <button class="button button-clear button-dark" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">

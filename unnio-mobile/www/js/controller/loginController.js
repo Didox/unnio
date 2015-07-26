@@ -1,15 +1,20 @@
-app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $cordovaFacebook, FirebaseData, FIREBASECONFIG) {
-
+app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoading, $cordovaFacebook, FirebaseData, FIREBASECONFIG) {
   var ref = new Firebase(FIREBASECONFIG.url);
   var auth = $firebaseAuth(ref);
 
+  $scope.showLoading = function(msg) {
+    $ionicLoading.show({
+      template: '<ion-spinner icon="lines"></ion-spinner><p class="spinner-msg">'+msg+'</p>',
+      hideOnStateChange: true
+    });
+  };
+
   $scope.loginWeb = function () {
+    $scope.showLoading("Please wait...")
     auth.$authWithOAuthPopup('facebook').then(function(authData) {
       $scope.uid = authData.uid;
-      
-      var user = FirebaseData('users', $scope.uid, '/');
-      var userProfileObj = user.data;
-
+      var user = FirebaseData('users', $scope.uid, 'profile');
+      var userProfileObj = user;
       userProfileObj.$loaded().then(function() {
         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
@@ -18,14 +23,14 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $cordovaFace
           $state.go('app.profile');
         })
         .catch(function(error) {
-          console.error("ERROR:", error);
+          console.error('ERROR:', error);
         });
+      })
+      .catch(function(error) {
+        console.log('ERROR:', error);
       });
     }).catch(function(error) {
       console.log('ERROR:', error);
-      $state.go('login');
     });
-
   };
-
 });

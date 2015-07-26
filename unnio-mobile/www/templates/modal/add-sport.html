@@ -1,10 +1,13 @@
 <ion-modal-view>
   <ion-header-bar class="bar-energized">
     <h1 class="title">Add new sport</h1>
-    <button class="button button-clear" ng-click="closeModal()"><span class="icon ion-close"></span></button>
+    <button class="button button-clear" ng-click="closeModal()">cancel</button>
   </ion-header-bar>
   <ion-content>
     <div class="list">
+      <div class="item item-message item-assertive item-light item-icon-right"  ng-if="modal.error">
+        <i class="ion-alert-circled"></i>You should select a sport
+      </div>
       <label class="item item-select">
         <div class="input-label">
           Sport
@@ -13,9 +16,6 @@
           <option ng-repeat="option in modal.options" value="{{option.key}}">{{option.value}}</option>
         </select>
       </label>
-      <div class="item item-message item-assertive item-light item-icon-right" ng-if="modal.error">
-        <p>You should add a sport</p> <i class="icon ion-ios-undo"></i>
-      </div>
       <label class="item item-select">
         <div class="input-label">
           Skill level
@@ -33,7 +33,7 @@
         <input type="hidden" ng-model="modal.nicename">
       </label>
       <div class="item">
-        <button class="right button button-energized fright" ng-click="addSport()"><strong>save</strong></button>
+        <button class="right button button-block button-energized fright" ng-click="addSport()"><strong>save</strong></button>
       </div>
     </div>
   </ion-content>

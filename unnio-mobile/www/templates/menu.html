@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false" class="sideMenu">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-energized">
+    <ion-nav-bar class="bar-light">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -22,18 +22,14 @@
           <i class="icon ion-person"></i>
           Profile
         </ion-item>
-        <ion-item menu-close href="#/app/connections">
-          <i class="icon ion-shuffle"></i>
-          Conncetions
-          <span class="badge badge-assertive" ng-if="badge > 0">{{badge}}</span>
-        </ion-item>
         <ion-item menu-close href="#/app/search">
         <i class="icon ion-search"></i>
           Search
         </ion-item>
-        <ion-item menu-close href="#/app/chats">
+        <ion-item menu-close href="#/app/friends">
         <i class="icon ion-person-stalker"></i>
-          Chats
+          Friends
+          <span class="badge badge-assertive" ng-if="badge > 0">{{badge}}</span>
         </ion-item>
         <ion-item menu-close ng-click="logoutFb()">
           <i class="icon ion-arrow-left-a"></i>

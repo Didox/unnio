@@ -8,9 +8,9 @@ app.controller('AppCtrl', function($scope,  $state, $window, $firebaseObject, $f
   
 
   $scope.checkConnections = function(uid){
-    var connections = new FirebaseData('connections', uid, 'pending', 'array');
-    var unwatch = connections.data.$watch(function(data) {
-      $scope.badge = connections.data.length;
+    var connections = new FirebaseData('friends', uid, 'pending', 'array');
+    var unwatch = connections.$watch(function(data) {
+      $scope.badge = connections.length;
     });
   }
 

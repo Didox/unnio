@@ -1,0 +1,61 @@
+<ion-view view-title="Friends">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-right" ng-click="reloadRoute()">
+      <i class="icon ion-ios-refresh-empty"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content  class="friends">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="reloadRoute()">
+    </ion-refresher>
+    <div class="list">
+      <div class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Filter" ng-model='filterKey'>
+      </div>
+      <div class="item item-divider item-button-right" ng-if="pendings.length > 0">
+        Pending
+        <span class="help"><i class="icon ion-ios-information"> swipe left to see te options</i></span>
+        <button class="button button-clear " ng-click="listConfig.shouldShowDeletePendings = !listConfig.shouldShowDeletePendings">
+          {{listConfig.shouldShowDeletePendings ? 'done' : 'refuse'}}
+        </button>
+      </div>
+      <ion-list class="pendings" show-delete="listConfig.shouldShowDeletePendings" show-reorder="false" can-swipe="true">
+        <ion-item class="item item-avatar item-icon-right" ng-repeat="user in pendings | filter:filterKey" ng-href="#/app/user/{{user.uid}}/{{user.name}}">
+          <img ng-src="{{user.avatar}}">
+          <h3>{{user.name}}</h3>
+          <i class="icon ion-ios-arrow-right"></i>
+          <ion-option-button class="button-positive" ng-click="openModalRequest(user.status)" ng-if="user.status" >
+            See request
+          </ion-option-button>
+          <ion-option-button class="button-balanced" ng-click="acceptConnection(user.uid, $index)" ng-if="user.status" >
+            Accept
+          </ion-option-button>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteConnection(user.uid, uid, $index, pendings, 'pending')"></ion-delete-button>
+        </ion-item>
+      </ion-list>
+      <div class="item item-divider item-button-right" ng-if="friends.length > 0">
+        Friends
+        <span class="help"><i class="icon ion-ios-information"> swipe left to see te options</i></span>
+        <button class="button button-clear" ng-click="listConfig.shouldShowDeleteFriends = !listConfig.shouldShowDeleteFriends">
+          {{listConfig.shouldShowDeleteFriends ? 'done' : 'remove'}}
+        </button>
+      </div>
+      <ion-list show-delete="listConfig.shouldShowDeleteFriends" show-reorder="false" can-swipe="true">
+        <ion-item class="item item-avatar item-icon-right" collection-repeat="friend in friends | filter:filterKey"  ng-href="#/app/user/{{friend.uid}}/{{friend.name}}">
+          <img ng-src="{{friend.avatar}}">
+          <h3>{{friend.name}}</h3>
+          <i class="icon ion-ios-arrow-right"></i>
+          <ion-option-button class="button-positive" ng-click="openModal()">
+            Feedback            
+          </ion-option-button>
+          <ion-option-button class="button-dark">
+            Chat            
+          </ion-option-button>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteConnection(friend.uid, uid, $index, friends, 'conected')"></ion-delete-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

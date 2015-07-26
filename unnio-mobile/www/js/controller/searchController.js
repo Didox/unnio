@@ -7,19 +7,16 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
   var geoFire = new GeoFire(firebaseRef);
   var userLoggedProfileObj = new FirebaseData('users', $scope.uid, 'profile');
 
-  $scope.searchResults = searchResults;
-
   //methods
   var prepareSearch = function(){
     $scope.showLoading('Geting geolocation...');
-    userLoggedProfileObj.data.$loaded().then(function() {
-      userLoggedSportsArr = convertSportsToArray(userLoggedProfileObj.data.sports);
+    userLoggedProfileObj.$loaded().then(function() {
+      userLoggedSportsArr = convertSportsToArray(userLoggedProfileObj.sports);
       $cordovaGeolocation.getCurrentPosition({ timeout: 10000, enableHighAccuracy: false}).then(function(position) {
         geoFire.set($scope.uid, [position.coords.latitude, position.coords.longitude]).then(function() {
           latUser = position.coords.latitude;
           longUser = position.coords.longitude;
-          rangeUser = parseInt(userLoggedProfileObj.data.searchRange);
-          $scope.showLoading('Serching...');
+          rangeUser = parseInt(userLoggedProfileObj.searchRange);
           doSearch([latUser,longUser],rangeUser);
         })
         .catch(function(error) {
@@ -36,34 +33,30 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
       console.error('ERROR:', error);
     });
   }
-
   var doSearch = function(geo, radius){
     var geoQuery = geoFire.query({
       center: geo,
       radius: radius
     });
-
     var onReadyRegistration = geoQuery.on('ready', function() {
       $scope.hideLoading();
       $scope.$broadcast('scroll.refreshComplete');
     });
-    var onKeyEnteredRegistration = geoQuery.on('key_entered', function(key, location, distance) {
-      
-      var userProfileObj = new FirebaseData('users', key, 'profile');
-      
-      userProfileObj.data.$loaded().then(function() {
-        var userSportsArr = convertSportsToArray(userProfileObj.data.sports);
+    var onKeyEnteredRegistration = geoQuery.on('key_entered', function(uid, location, distance) {
+      var userProfileObj = new FirebaseData('users', uid, 'profile');
+      userProfileObj.$loaded().then(function() {
+        var userSportsArr = convertSportsToArray(userProfileObj.sports);
         var matchResults = checkMatchBySport(userLoggedSportsArr, userSportsArr);
-
-        if( matchResults.match && (!userProfileObj.data.hidden) && (key !== $scope.uid) ){
+        if( matchResults.match && (uid !== $scope.uid) ){
           searchResults.push({
-            uid: key, 
+            uid: uid, 
             location:location, 
             sports: matchResults.sports,
             distance: 'Distance: ' + (distance > 1 ? parseInt(distance) + 'km' : 'less than 1km'), 
-            avatar: userProfileObj.data.avatar,
-            name: (userProfileObj.data.nickname != '' && userProfileObj.data.nickname) ?  userProfileObj.data.nickname : userProfileObj.data.name
+            avatar: userProfileObj.avatar,
+            name: (userProfileObj.nickname != '' && userProfileObj.nickname) ?  userProfileObj.nickname : userProfileObj.name
           });
+          $scope.searchResults = searchResults;
         }
       })
       .catch(function(error) {
@@ -90,11 +83,7 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
         results.sports.push(value);
       }
     });
-    if (results.match){
-      return results;
-    }else{
-      return false;
-    }
+    return results;
   };
 
   $scope.reloadRoute = function() {

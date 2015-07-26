@@ -21,6 +21,7 @@ app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    console.log(navigator.geolocation);
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -95,32 +96,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('app.connections', {
-    url: '/connections',
+  .state('app.friends', {
+    url: '/friends',
     views: {
       'menuContent': {
-        templateUrl: 'templates/connections.html',
-        controller: 'ConnectionsCtrl'
-      }
-    }
-  })
-
-  .state('app.chat', {
-    url: '/chat/:chatId/:nome',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/chat.html',
-        controller: 'ChatCtrl'
-      }
-    }
-  })
-
-  .state('app.chats', {
-    url: '/chats',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/chats.html',
-        controller: 'ChatsCtrl'
+        templateUrl: 'templates/friends.html',
+        controller: 'FriendsCtrl'
       }
     }
   })

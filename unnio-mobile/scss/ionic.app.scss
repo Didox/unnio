@@ -1,9 +1,4 @@
 /*
-To customize the look and feel of Ionic, you can override the variables
-in ionic's _variables.scss file.
-
-For example, you might change some of the default colors:
-
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
@@ -15,59 +10,72 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-/* colors to override */
-
-$energized:                       #97c00e !default;
-$button-energized-text:           #444 !default;
-
-ion-header-bar .button-icon, .button i, .back-button{
-  color:#444!important;
-}
-.add-sport i{
-  color:#444!important;
-}
-ion-side-menu i{
-  color: !important;
-}
-
-h1,h2,h3,h4,h5,h6, p{
-  color: #444;
-}
-
-.item-divider {
-  color: #444;
-}
-
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-/* Empty. Add your own CSS if you like */
+/* colors to override */
 
-.fleft{
-  float:left;
+$energized:                       #97c00e !default;
+$button-light-text:           red !default;
+a{
+  text-decoration: none;
 }
-.fright{
-  float:right;
+h1,h2,h3,h4,h5,h6, p{
+  color: #000;
 }
-
+input{
+  font-size:16px!important;
+}
+textarea {
+  font-size:16px;
+  min-height: 100px;
+}
 ion-header-bar .title{
   font-size: 18px!important;
-}
-
-ion-header-bar.bar-dark .title{
-  text-align:left;
 }
 
 ion-side-menu i{
   font-size: 21px;
   margin-right: 5px;
 }
-
 ion-content{
   background: $stable;
+}
+
+.item.item-energized.avatar{
+  background-color: $energized!important;
+  padding: 0;
+  height:100px;
+}
+
+.item.item-energized.avatar .img{
+  height: 100px;
+  width: 100px;
+  margin-left:15px;
+  background-position: center center;
+}
+
+.feedback .item-radio.assertive .item-content, .feedback .item-radio.assertive{
+  backgound-color: $assertive!important;
+}
+
+.feedback .item-radio input:checked ~ .item-content {
+  backgound-color: $assertive!important;
+}
+
+.feedback .item-radio.assertive i{
+  color:$assertive!important;
+}
+
+.feedback .item-radio.balanced .item-content{
+  backgound-color: $balanced!important;
+}
+
+.feedback .item-radio.balanced i{
+  color:$balanced!important;
 }
 
 .spinner svg {
@@ -81,132 +89,22 @@ ion-content{
   color:#ccc!important;
 }
 
-
-.item.item-dark {
-  border-color:#CCC;
+.avatar {
+  border:1px solid blue;
 }
-.item.item-toggle{
-  padding: 8px 16px;
+.avatar .buttons{
+  text-align: center;
+  top:20px;
 }
-.item-clear{
-  background: none;
-  padding: 10px 15px 0 15px ;
-  color: #999;
-}
-.item-message p{
-  text-align: right;
-  padding-right: 30px;
-  color: white;
-  font-size: 16px;
-  position: relative;
-}
-.item-message i{
-  transform: rotate(89deg);
-  margin-right: 35px;
-  top:-8px!important;
-}
-.item-divider.item-button-right button{
-  min-height:16px;
-  top:0;
-  color:#444;
-}
-
-
-.add-sport{
-  color:#444!important;
-}
-.add-sport i{
-  font-size: 14px;
-  color:#444;
-  line-height: 32px;
-}
-
-.add-sport i:before{
-  font-size: 20px!important;
-  line-height: 32px!important;
-}
-
-
-.avatar{
-  background-color: #EEE;
-}
-.avatar .img{
-  border-radius: 50%;
-  max-width: 100%;
-  height: auto;
-  clear: both;
-  border-radius: 50%;
-  float:left;
-  width: 68px;
-  height: 68px;
-  margin-right: 5px;
-  background-size: cover;
-  background-position: center center;
-  border:2px solid white;
-}
-.avatar h2 {
-  float: left;
-  color: white;
-  line-height: 70px;
-  font-size: 22px;
-  font-weight: bold;
-}
-.avatar h2 span{
-  font-size: 14px;
-  color: #666;
-}
-.connections .avatar .img{
-  width: 60px;
-  height: 60px;
-  border:2px solid $dark;
-}
-.connections .info{
-  float:left;
-  max-width:150px;
-}
-.connections .avatar h2 {
-  font-size:16px;
-  width:100%;
-  color: #444;
-  line-height: 26px;
-}
-.connections .avatar p{
-  font-size:14px;
-  width:100%;
-  color: #999;
-  line-height: 18px;
-}
-
-.connections .pendings .item-content {
-  padding: 10px!important;
-}
-
-.connections .buttons .button{
-  position:absolute;
-  right: 10px;
-  top:7px;
-  display:inline-block!important;
-  width:80px;
-  text-align:center;
-  font-size:14px;
-  line-height:30px;
-  height:30px;
-  min-height:30px;
-}
-
-.connections .buttons .button.accept{
-  position:absolute;
-  top: 43px;
-}
-
-input{
-  font-size:16px!important;
-}
-
-select option{
+.avatar .buttons i{
   font-size: 30px;
 }
-
-textarea {
-  min-height: 100px;
+.avatar .buttons p{
+  font-size: 16px;
+}
+.avatar .buttons p, .avatar .buttons i{
+  color: white!important;
+  width: 100%;
+  clear:both;
+  display: block;
 }
