@@ -1,4 +1,4 @@
-<ion-view view-title="Profile">
+<ion-view view-title="{{uname}}">
   <ion-content class="profile">
     <div class="list">
       <div class="item item-message item-assertive item-light item-icon-right" ng-if="sportsArr.length == 0">
@@ -6,13 +6,15 @@
       </div>
       <div class="item item-energized item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
-        <h2>{{userProfile.name}}</h2>
         <div class="buttons">
           <a ng-click="openModal()" href="#">
             <i class="icon ion-ios-plus-outline"></i>
             <p>add sport</p>
           </a>
         </div>
+      </div>
+      <div class="item item-divider">
+        Info
       </div>
       <label class="item item-input">
         <span class="input-label">Nick</span>
@@ -26,13 +28,8 @@
         <span class="input-label">Location</span>
         <input type="tel" ng-model="userProfile.location" placeholder="City, state">
       </label>
-      <div class="item item-divider">Search options</div>
-      <label class="item range range-energized">
-        <span class="input-label">Range {{userProfile.searchRange}} km </span>
-        <input type="range" ng-model="userProfile.searchRange" min="0" max="30">
-      </label>
       <div class="item item-divider item-button-right" ng-if="sportsArr.length > 0">
-        My Sports
+        Sports
         <button class="button button-clear button-dark" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
           {{listConfig.shouldShowDelete ? 'done' : 'remove'}}
         </button>

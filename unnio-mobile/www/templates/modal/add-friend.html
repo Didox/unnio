@@ -1,15 +1,19 @@
 <ion-modal-view>
-  <ion-header-bar class="bar-energized">
+  <ion-header-bar class="bar-light item-bar-right">
     <h1 class="title">Add friend</h1>
-    <button class="button button-clear" ng-click="closeModal()">cancel</button>
+    <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-outline"></i></button>
   </ion-header-bar>
   <ion-content>
     <div class="list">
+      <div class="item item-dark item-icon-left item-help">
+        <i class="icon ion-ios-information-outline"></i>
+        Add as a friend to chat and leave a feedback
+      </div>
       <label class="item item-input">
         <textarea maxlength="140" placeholder="Send a nice message" ng-model='modal.msg'></textarea>
       </label>
       <div class="item">
-        <button class="right button button-block button-energized fright" ng-click="sendFriendRequest(modal.uid)"><strong>send request</strong></button>
+        <button class="right button button-block button-calm" ng-click="sendFriendRequest(modal.uid)"><strong>send request</strong></button>
       </div>
     </div>
   </ion-content>

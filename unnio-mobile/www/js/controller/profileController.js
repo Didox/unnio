@@ -1,5 +1,6 @@
-app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FirebaseData, SPORTS) {
+app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModal, FirebaseData, SPORTS) {
 
+  $scope.uname = $localstorage.get('uname');
   $scope.showLoading("Loading profile...");
 
   var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');

@@ -18,8 +18,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 /* colors to override */
 
-$energized:                       #97c00e !default;
-$button-light-text:           red !default;
+$energized:                   #97c00e !default;
+$calm:                        #009ddf !default;
+$button-light-text:           $grey !default;
+
 a{
   text-decoration: none;
 }
@@ -42,22 +44,89 @@ ion-side-menu i{
   margin-right: 5px;
 }
 ion-content{
-  background: $stable;
+  //background: $stable;
+}
+
+//Login
+.login {
+  max-width:320px;
+  margin: 70px auto 0;
+  text-align: center;
+}
+
+.login {
+  max-width:320px;
+  margin: 70px auto 0;
+}
+
+.login button{
+  max-width:320px;
+  margin: 50px auto 10px;
+  border:none;
+  border-radius:5px;
+  background: #3b5a9a!important;
+  color: white!important;
+  padding:0 30px;
+  max-width: 300px;
+  font-size:14px;
+  font-weight: bold;
+}
+
+.login button:active{
+  opacity: 0.8;
+}
+
+.login p{
+  color:#999;
+  font-size:12px;
+}
+.login i{
+  color:#999;
+}
+
+//custom spinner
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #FFF;
+  fill: #FFF;
+}
+.spinner-msg {
+  color:#ccc!important;
+}
+
+// Itens gerais
+
+.item.item-help{
+  font-size:14px;
 }
 
 .item.item-energized.avatar{
   background-color: $energized!important;
   padding: 0;
   height:100px;
+  border-top:none
 }
 
 .item.item-energized.avatar .img{
   height: 100px;
   width: 100px;
-  margin-left:15px;
+  margin-left:10px;
   background-position: center center;
 }
 
+.item.item-divider button{
+  min-height:20px;
+  line-height:20px;
+  font-size:14px;
+}
+
+.item.item-divider i{
+  font-size:13px;
+  color:#777;
+}
+
+//feedback
 .feedback .item-radio.assertive .item-content, .feedback .item-radio.assertive{
   backgound-color: $assertive!important;
 }
@@ -78,17 +147,7 @@ ion-content{
   color:$balanced!important;
 }
 
-.spinner svg {
-  width: 28px;
-  height: 28px;
-  stroke: #FFF;
-  fill: #FFF;
-}
-
-.spinner-msg {
-  color:#ccc!important;
-}
-
+// Avatar
 .avatar {
   border:1px solid blue;
 }

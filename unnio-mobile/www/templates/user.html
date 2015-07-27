@@ -1,17 +1,21 @@
 <ion-view view-title="{{userName}}">
-  <ion-nav-buttons side="right">
-    <button class="button button-clear add-sport" ng-click="openModal(userProfile.uid)">
-      add friend 
-    </button>
-  </ion-nav-buttons ng-click="sendFriendRequest(userProfile.uid)">
   <ion-content class="profile">
     <div class="list">
-      <div class="item avatar item-dark">
+      <div class="item item-energized item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
-        <h2>{{userProfile.name}}</h2>
+        <div class="buttons">
+          <a ng-click="openModal(userProfile.uid)" href="#">
+            <i class="icon ion-ios-plus-outline"></i>
+            <p>add friend</p>
+          </a>
+        </div>
       </div>
       <div class="item item-divider item-button-right">
         Profile
+      </div>
+      <div class="item item-input">
+        <span class="input-label">Name</span>
+        <h2>{{userProfile.name}}</h2>
       </div>
       <div class="item item-input" ng-if="userProfile.nickname">
         <span class="input-label">Nickname</span>

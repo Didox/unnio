@@ -35,6 +35,7 @@ app.controller('AppCtrl', function($scope,  $state, $window, $firebaseObject, $f
     $scope.uid = authData.uid;
     $scope.checkConnections($scope.uid);
   } else {
+    console.log('eita');
     $state.go('login');
   }
 

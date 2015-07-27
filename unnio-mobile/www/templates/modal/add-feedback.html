@@ -1,13 +1,16 @@
 <ion-modal-view>
-  <ion-header-bar class="bar-energized">
+  <ion-header-bar class="bar-light">
     <h1 class="title">Feedback</h1>
-    <button class="button button-clear" ng-click="closeModal()">cancel</button>
+    <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-outline"></i></button>
   </ion-header-bar>
   <ion-content class="feedback">
     <div class="list">
+      <div class="item item-dark item-icon-left item-help">
+        <i class="icon ion-ios-information-outline"></i>
+        Add as a friend to chat and leave a feedback
+      </div>
       <div class="row">
         <div class="col col-50">
-  
           <label class="item item-radio balanced">
             <input type="radio" name="group">
             <div class="item-content">
@@ -15,7 +18,6 @@
             </div>
             <i class="radio-icon ion-checkmark"></i>
           </label>
-        
         </div>
         <div class="col col-50">
           <label class="item item-radio assertive">

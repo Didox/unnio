@@ -11,6 +11,7 @@ $energized:                       #97c00e !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
+$grey:                            #777 !default;
 
 
 // Base
@@ -93,7 +94,7 @@ $button-bar-button-padding:       8px !default;
 $button-bar-button-icon-size:     20px !default;
 
 $button-light-bg:                 $light !default;
-$button-light-text:               #444 !default;
+$button-light-text:               $grey !default;
 $button-light-border:             #ddd !default;
 $button-light-active-bg:          #fafafa !default;
 $button-light-active-border:      #ccc !default;

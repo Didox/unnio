@@ -1,12 +1,12 @@
 <ion-modal-view>
-  <ion-header-bar class="bar-energized">
+  <ion-header-bar class="bar-light bar-item-right">
     <h1 class="title">Add new sport</h1>
-    <button class="button button-clear" ng-click="closeModal()">cancel</button>
+    <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-outline"></i></button>
   </ion-header-bar>
   <ion-content>
     <div class="list">
-      <div class="item item-message item-assertive item-light item-icon-right"  ng-if="modal.error">
-        <i class="ion-alert-circled"></i>You should select a sport
+      <div class="item item-message item-assertive item-light item-icon-left"  ng-if="modal.error">
+        <i class="icon ion-alert-circled"></i>You should select a sport
       </div>
       <label class="item item-select">
         <div class="input-label">
@@ -33,7 +33,7 @@
         <input type="hidden" ng-model="modal.nicename">
       </label>
       <div class="item">
-        <button class="right button button-block button-energized fright" ng-click="addSport()"><strong>save</strong></button>
+        <button class="right button button-block button-calm fright" ng-click="addSport()"><strong>save</strong></button>
       </div>
     </div>
   </ion-content>
