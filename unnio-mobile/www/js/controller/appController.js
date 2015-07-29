@@ -1,12 +1,9 @@
 angular.module('starter.controllers', []);
 
-app.controller('AppCtrl', function($scope,  $state, $window, $firebaseObject, $firebaseArray, $ionicLoading, $filter, FIREBASECONFIG, FirebaseData) {
+app.controller('AppCtrl', function($scope,  $state, $window, $ionicLoading, FIREBASECONFIG, FirebaseData, FirebaseAuthData) {
 
-  var urlRef = FIREBASECONFIG.url;
-  var authRef = new Firebase(urlRef);
-  var authData = authRef.getAuth();
+  var auth = new FirebaseAuthData();
   
-
   $scope.checkConnections = function(uid){
     var connections = new FirebaseData('friends', uid, 'pending', 'array');
     var unwatch = connections.$watch(function(data) {
@@ -26,13 +23,13 @@ app.controller('AppCtrl', function($scope,  $state, $window, $firebaseObject, $f
   };
 
   $scope.logoutFb = function () {
-    authRef.unauth();
+    auth.ref.unauth();
     $state.go('login');
     $window.location.reload();
   };
 
-  if (authData) {
-    $scope.uid = authData.uid;
+  if(auth.data) {
+    $scope.uid = auth.data.uid;
     $scope.checkConnections($scope.uid);
   } else {
     console.log('eita');
