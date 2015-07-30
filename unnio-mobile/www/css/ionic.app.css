@@ -7685,11 +7685,24 @@ textarea {
   min-height: 100px; }
 
 ion-header-bar .title {
-  font-size: 18px !important; }
+  font-size: 18px !important;
+  color: #97c00e; }
+
+ion-side-menu {
+  text-align: rigth; }
 
 ion-side-menu i {
   font-size: 21px;
   margin-right: 5px; }
+
+.ion-log-out:before {
+  transform: rotate(180deg); }
+
+ion-content {
+  background: #f8f8f8; }
+
+.list {
+  margin-bottom: 0 !important; }
 
 .login {
   max-width: 320px;
@@ -7734,13 +7747,13 @@ ion-side-menu i {
 .item.item-help {
   font-size: 14px; }
 
-.item.item-energized.avatar {
+.item.avatar {
   background-color: #97c00e !important;
   padding: 0;
   height: 100px;
   border-top: none; }
 
-.item.item-energized.avatar .img {
+.item.avatar .img {
   height: 100px;
   width: 100px;
   margin-left: 10px;

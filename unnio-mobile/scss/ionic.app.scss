@@ -37,28 +37,38 @@ textarea {
 }
 ion-header-bar .title{
   font-size: 18px!important;
+  color:$energized;
 }
 
+ion-side-menu {
+  text-align:rigth;
+}
 ion-side-menu i{
   font-size: 21px;
   margin-right: 5px;
 }
-ion-content{
-  //background: $stable;
+
+.ion-log-out:before{
+  transform: rotate(180deg);
 }
 
-//Login
+ion-content{
+  background: $stable;
+}
+
+.list{
+  margin-bottom: 0!important;
+}
+
 .login {
   max-width:320px;
   margin: 70px auto 0;
   text-align: center;
 }
-
 .login {
   max-width:320px;
   margin: 70px auto 0;
 }
-
 .login button{
   max-width:320px;
   margin: 50px auto 10px;
@@ -71,11 +81,9 @@ ion-content{
   font-size:14px;
   font-weight: bold;
 }
-
 .login button:active{
   opacity: 0.8;
 }
-
 .login p{
   color:#999;
   font-size:12px;
@@ -84,7 +92,6 @@ ion-content{
   color:#999;
 }
 
-//custom spinner
 .spinner svg {
   width: 28px;
   height: 28px;
@@ -95,50 +102,40 @@ ion-content{
   color:#ccc!important;
 }
 
-// Itens gerais
-
 .item.item-help{
   font-size:14px;
 }
-
-.item.item-energized.avatar{
+.item.avatar{
   background-color: $energized!important;
   padding: 0;
   height:100px;
   border-top:none
 }
-
-.item.item-energized.avatar .img{
+.item.avatar .img{
   height: 100px;
   width: 100px;
   margin-left:10px;
   background-position: center center;
 }
-
 .item.item-divider button{
   min-height:20px;
   line-height:20px;
   font-size:14px;
 }
-
 .item.item-divider i{
   font-size:13px;
   color:#777;
 }
 
-//feedback
 .feedback .item-radio.assertive .item-content, .feedback .item-radio.assertive{
   backgound-color: $assertive!important;
 }
-
 .feedback .item-radio input:checked ~ .item-content {
   backgound-color: $assertive!important;
 }
-
 .feedback .item-radio.assertive i{
   color:$assertive!important;
 }
-
 .feedback .item-radio.balanced .item-content{
   backgound-color: $balanced!important;
 }
@@ -147,7 +144,6 @@ ion-content{
   color:$balanced!important;
 }
 
-// Avatar
 .avatar {
   border:1px solid blue;
 }

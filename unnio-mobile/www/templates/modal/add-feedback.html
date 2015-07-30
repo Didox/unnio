@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col col-50">
           <label class="item item-radio balanced">
-            <input type="radio" name="group">
+            <input type="radio" ng-model="modal.vote" value="true">
             <div class="item-content">
               Positive
             </div>
@@ -17,7 +17,7 @@
         </div>
         <div class="col col-50">
           <label class="item item-radio assertive">
-            <input type="radio" name="group">
+            <input type="radio" ng-model="modal.vote" value="false">
             <div class="item-content">
               Negative
             </div>
@@ -28,10 +28,10 @@
     </div>
     <div class="list">
       <label class="item item-input">
-        <textarea maxlength="140" placeholder="Some few words about this player" ng-model='modal.msg'></textarea>
+        <textarea maxlength="140" placeholder="Some few words about this player" ng-model='modal.message'></textarea>
       </label>
       <div class="item">
-        <button class="right button button-block button-energized fright" ng-click="sendFriendRequest(modal.uid)"><strong>send request</strong></button>
+        <button class="right button button-block button-calm fright" ng-click="addFeedback(modal.uid, modal.authorUid)"><strong>Save feedback</strong></button>
       </div>
     </div>
   </ion-content>

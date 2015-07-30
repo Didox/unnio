@@ -4,7 +4,6 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
   $scope.showLoading("Loading profile...");
 
   var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
-  var sportsArr = sports;
 
   $scope.listConfig = {
     shouldShowDelete : false
@@ -40,8 +39,8 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
       console.error("ERROR:", error);
     });
 
-    sportsArr.$loaded().then(function(x) {
-      $scope.sportsArr = sportsArr;
+    sports.$loaded().then(function(x) {
+      $scope.sports = sports;
     })
     .catch(function(error) {
       console.log("ERROR:", error);
@@ -60,7 +59,7 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
           sport.key = $scope.modal.name;
           sport.about = $scope.modal.about ? $scope.modal.about : "-";
           sport.level = $scope.modal.level ? $scope.modal.level : 1;
-          sportsArr.$add(sport).then(function(ref) {
+          sports.$add(sport).then(function(ref) {
             $scope.hideLoading();
             $scope.closeModal();
           }).catch(function(error) {
@@ -76,7 +75,7 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
   }
 
   $scope.deleteSport = function(index){
-    sportsArr.$remove(index).then(function(ref){
+    sports.$remove(index).then(function(ref){
       // Removed
     }).catch(function(error) {
       console.error("ERROR:", error);

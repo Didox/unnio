@@ -1,8 +1,8 @@
 <ion-view view-title="{{uname}}">
   <ion-content class="profile">
     <div class="list">
-      <div class="item item-message item-assertive item-light item-icon-right" ng-if="sportsArr.length == 0">
-        You should add a sport
+      <div class="item item-message item-dark item-light item-icon-left" ng-if="sports.length == 0">
+        <i class="icon ion-alert-circled"></i> You should add a sport
       </div>
       <div class="item item-energized item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
@@ -28,14 +28,14 @@
         <span class="input-label">Location</span>
         <input type="tel" ng-model="userProfile.location" placeholder="City, state">
       </label>
-      <div class="item item-divider item-button-right" ng-if="sportsArr.length > 0">
+      <div class="item item-divider item-button-right" ng-if="sports.length > 0">
         Sports
         <button class="button button-clear button-dark" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
           {{listConfig.shouldShowDelete ? 'done' : 'remove'}}
         </button>
       </div>
       <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="false">
-        <ion-item collection-repeat="sport in sportsArr" ng-href="#/app/profile/sport/{{sport.$id}}/{{sport.name}}" class="item-icon-right">
+        <ion-item collection-repeat="sport in sports" ng-href="#/app/profile/sport/{{sport.$id}}/{{sport.name}}" class="item-icon-right">
           <h2>{{sport.name}}</h2>
           <p>{{sport.about}}</p>
           <i class="icon ion-ios-arrow-right"></i>

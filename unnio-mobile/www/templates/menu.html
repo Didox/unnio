@@ -13,13 +13,16 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-dark">
+    <ion-header-bar class="bar-dark item-icon-left">
+      <div class="icon button-clear">
+        <div back-img="img/logo.png" style="width:30px;height:30px;"></div>
+      </div>
       <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
         <ion-item menu-close href="#/app/profile">
-          <i class="icon ion-person"></i>
+          <i class="icon ion-clipboard"></i>
           Profile
         </ion-item>
         <ion-item menu-close href="#/app/search">
@@ -29,10 +32,14 @@
         <ion-item menu-close href="#/app/friends">
         <i class="icon ion-person-stalker"></i>
           Friends
-          <span class="badge badge-assertive" ng-if="badge > 0">{{badge}}</span>
+        </ion-item>
+        <ion-item menu-close href="#/app/requests">
+          <i class="icon ion-person-add"></i>
+            Requests
+          <span class="badge badge-assertive" ng-if="badgeRequests > 0">{{badgeRequests}}</span>
         </ion-item>
         <ion-item menu-close ng-click="logoutFb()">
-          <i class="icon ion-arrow-left-a"></i>
+          <i class="icon ion-log-out" style="transform: rotate(180deg);"></i>
           Logout
         </ion-item>
       </ion-list>

@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $localstorage, $ionicLoading, $cordovaFacebook, FirebaseData, FIREBASECONFIG) {
+app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoading, $cordovaFacebook, FirebaseData, FIREBASECONFIG) {
   var ref = new Firebase(FIREBASECONFIG.url);
   var auth = $firebaseAuth(ref);
 
@@ -13,7 +13,6 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $localstorag
     $ionicLoading.hide();
   };
 
-
   $scope.loginWeb = function () {
     $scope.showLoading("Please wait...")
     auth.$authWithOAuthPopup('facebook').then(function(authData) {
@@ -22,10 +21,8 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $localstorag
       userProfileObj.$loaded().then(function() {
         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
+        userProfileObj.searchRange = (userProfileObj.searchRange ? userProfileObj.searchRange : 20 );        
         userProfileObj.$save().then(function(ref) {
-          $localstorage.set('uid', authData.uid);
-          $localstorage.set('uname', userProfileObj.name);
-          $localstorage.set('uavatar', userProfileObj.avatar);
           $state.go('app.profile');
         })
         .catch(function(error) {

@@ -7,7 +7,7 @@ app.controller('AppCtrl', function($scope,  $state, $window, $ionicLoading, FIRE
   $scope.checkConnections = function(uid){
     var connections = new FirebaseData('friends', uid, 'pending', 'array');
     var unwatch = connections.$watch(function(data) {
-      $scope.badge = connections.length;
+      $scope.badgeRequests = connections.length;
     });
   }
 
@@ -32,7 +32,6 @@ app.controller('AppCtrl', function($scope,  $state, $window, $ionicLoading, FIRE
     $scope.uid = auth.data.uid;
     $scope.checkConnections($scope.uid);
   } else {
-    console.log('eita');
     $state.go('login');
   }
 

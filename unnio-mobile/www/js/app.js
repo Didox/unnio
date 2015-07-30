@@ -105,6 +105,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
+  .state('app.requests', {
+    url: '/requests',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/requests.html',
+        controller: 'RequestsCtrl'
+      }
+    }
+  })
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 });
