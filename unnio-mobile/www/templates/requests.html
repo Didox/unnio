@@ -1,36 +1,40 @@
-<ion-view view-title="Requests">
+<ion-view view-title="Pedidos">
   <ion-nav-buttons side="right">
     <button class="button button-clear button-right" ng-click="reloadRoute()">
       <i class="icon ion-ios-refresh-empty"></i>
     </button>
   </ion-nav-buttons>
-  <ion-content  class="requests">
+  <ion-content class="requests">
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="reloadRoute()">
     </ion-refresher>
     <div class="list">
-      <div class="item item-input">
+<!--       <div class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="text" placeholder="Filter" ng-model='filterKey'>
+      </div> -->
+      <div class="item item-icon-left" ng-if="!(pendings.length > 0)">
+        <i class="icon ion-ios-information"></i><strong>Nenhum pedido pendente</strong>
       </div>
       <div class="item item-divider item-button-right" ng-if="pendings.length > 0">
-        <span class="help"><i class="icon ion-ios-information"> swipe left to see the options</i></span>
+        <span class="help"><i class="icon ion-ios-information"> desliza para esquerda para ver as opções</i></span>
         <button class="button button-clear" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
-          {{listConfig.shouldShowDelete ? 'done' : 'remove'}}
+          {{listConfig.shouldShowDelete ? 'pronto' : 'editar'}}
         </button>
       </div>
     </div>
     <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="true">
       <ion-item class="item item-avatar item-icon-right" collection-repeat="request in pendings | filter:filterKey"  ng-href="#/app/user/{{request.uid}}/{{request.name}}">
         <img ng-src="{{request.avatar}}">
-        <h3>{{request.name}}</h3>
+        <h2>{{request.name}}</h2>
+        <span ng-repeat="sport in request.sports" class="flaticon-{{sport.key}}"></span>
         <i class="icon ion-ios-arrow-right"></i>
         <ion-option-button class="button-positive" ng-click="openModal(request.status, request.uid, $index)" ng-if="request.status" >
-            See request
+            Ver pedido
           </ion-option-button>
           <ion-option-button class="button-balanced" ng-click="acceptConnection(request.uid, $index)" ng-if="request.status" >
-            Accept
+            Aceitar
           </ion-option-button>
           <ion-delete-button class="ion-minus-circled" ng-click="deleteConnection(request.uid, uid, $index, pendings, 'pending')"></ion-delete-button>
       </ion-item>

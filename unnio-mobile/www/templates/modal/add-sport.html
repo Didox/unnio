@@ -1,39 +1,27 @@
 <ion-modal-view>
   <ion-header-bar class="bar-light bar-item-right">
-    <h1 class="title">Add new sport</h1>
+    <h1 class="title">Adicionar esporte</h1>
     <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-outline"></i></button>
   </ion-header-bar>
   <ion-content>
     <div class="list">
       <div class="item item-message item-assertive item-light item-icon-left"  ng-if="modal.error">
-        <i class="icon ion-alert-circled"></i>You should select a sport
+        <i class="icon ion-alert-circled"></i>Você deve selecionar um esporte
       </div>
       <label class="item item-select">
         <div class="input-label">
-          Sport
+          Esporte
         </div>
         <select ng-model="modal.name" required>
           <option ng-repeat="option in modal.options" value="{{option.key}}">{{option.value}}</option>
         </select>
       </label>
-      <label class="item item-select">
-        <div class="input-label">
-          Skill level
-        </div>
-        <select ng-model="modal.level" id="selectlevel" required>
-          <option value="1">Newbie</option>
-          <option value="2">Advanced newbie</option>
-          <option value="3">Regular</option>
-          <option value="4">Good</option>
-          <option value="5">Very good</option>
-        </select>
-      </label>
       <label class="item item-input">
-        <textarea placeholder="Your experience in that sport" ng-model='modal.about'></textarea>
+        <textarea placeholder="Fale sobre sua experiência nesse esporte" ng-model='modal.about'></textarea>
         <input type="hidden" ng-model="modal.nicename">
       </label>
       <div class="item">
-        <button class="right button button-block button-calm fright" ng-click="addSport()"><strong>save</strong></button>
+        <button class="right button button-block button-calm fright" ng-click="addSport()"><strong>Adicionar</strong></button>
       </div>
     </div>
   </ion-content>

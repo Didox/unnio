@@ -1,4 +1,4 @@
-<ion-view view-title="Friends">
+<ion-view view-title="Amigos">
   <ion-nav-buttons side="right">
     <button class="button button-clear button-right" ng-click="reloadRoute()">
       <i class="icon ion-ios-refresh-empty"></i>
@@ -12,7 +12,7 @@
     <div class="list">
       <div class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Filter" ng-model='filterKey'>
+        <input type="text" placeholder="Buscar" ng-model='filterKey'>
       </div>
       <div class="item item-divider item-button-right" ng-if="friends.length > 0">
         <span class="help"><i class="icon ion-ios-information"> swipe left to see the options</i></span>
@@ -24,7 +24,8 @@
     <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="true">
       <ion-item class="item item-avatar item-icon-right" collection-repeat="friend in friends | filter:filterKey"  ng-href="#/app/user/{{friend.uid}}/{{friend.name}}">
         <img ng-src="{{friend.avatar}}">
-        <h3>{{friend.name}}</h3>
+        <h2>{{friend.name}}</h2>
+        <span ng-repeat="sport in friend.sports" class="flaticon-{{sport.key}}"></span>
         <i class="icon ion-ios-arrow-right"></i>
         <ion-option-button class="button-positive" ng-click="openModal(friend.uid, uid)">
           Feedback            

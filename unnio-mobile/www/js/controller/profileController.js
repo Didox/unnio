@@ -1,7 +1,7 @@
 app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModal, FirebaseData, SPORTS) {
 
   $scope.uname = $localstorage.get('uname');
-  $scope.showLoading("Loading profile...");
+  $scope.showLoading("Carregando perfil...");
 
   var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
 
@@ -49,7 +49,7 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
   }
 
   $scope.addSport = function(){    
-    $scope.showLoading("Adding new sport...");
+    $scope.showLoading("Adicionando novo esporte...");
     $scope.modal.error = false;
     var sport = {};
     if($scope.modal.name){

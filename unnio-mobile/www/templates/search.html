@@ -1,4 +1,4 @@
-<ion-view view-title="Search">
+<ion-view view-title="Busca">
   <ion-nav-buttons side="right">
     <button class="button button-clear button-right" ng-click="reloadRoute()">
       <i class="icon ion-ios-refresh-empty"></i>
@@ -10,18 +10,20 @@
       on-refresh="reloadRoute()">
     </ion-refresher>
     <ion-list>
-      <div class="item item-input range range-energized">
-        <input type="range" min="1" max="40" on-release="reloadRoute()" ng-model="userLoggedProfileObj.searchRange"> {{userLoggedProfileObj.searchRange}}km
+      <div class="item item-stable item-input range range-energized">
+        Distancia <input type="range" min="1" max="40" on-release="reloadRoute()" ng-model="userLoggedProfileObj.searchRange"> {{userLoggedProfileObj.searchRange}}km
       </div>
-      <div class="item item-input">
+<!--       <div class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="text" placeholder="Filter results" ng-model='filterKey'>
-      </div>
+      </div> -->
       <ion-item class="item item-avatar item-icon-right" collection-repeat="result in searchResults | filter:filterKey" href="#/app/user/{{result.uid}}/{{result.name}}">
         <img ng-src="{{result.avatar}}">
         <h2>{{result.name}}</h2>
-        <span ng-repeat="sport in result.sports">{{sport}} </span>
-        <h4>{{result.distance}}</h4>
+        <p>{{result.distance}}</p>
+        <p ng-if="result.sports.length > 0">
+          <i ng-repeat="sport in result.sports" class="flaticon-{{sport}}"></i>
+        </p>
         <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
     </ion-list>

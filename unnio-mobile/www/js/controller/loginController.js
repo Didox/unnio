@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoading, $cordovaFacebook, FirebaseData, FIREBASECONFIG) {
+app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoading, FirebaseData, FIREBASECONFIG) {
   var ref = new Firebase(FIREBASECONFIG.url);
   var auth = $firebaseAuth(ref);
 

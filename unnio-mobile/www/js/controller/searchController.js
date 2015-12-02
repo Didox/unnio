@@ -1,5 +1,5 @@
 app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filter, FirebaseData,  FIREBASECONFIG){
-  $scope.showLoading('Loading profile...');
+  $scope.showLoading('Carregando perfil...');
   
   var firebaseRef = new Firebase(FIREBASECONFIG.geo);
   var geoFire = new GeoFire(firebaseRef);
@@ -17,7 +17,7 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
   }
 
   $scope.prepareSearch = function(){
-    $scope.showLoading('Getting geolocation...');
+    $scope.showLoading('Obtendo localização...');
     userLoggedSports = convertSportsToArray(userLoggedProfileObj.sports);
     $cordovaGeolocation.getCurrentPosition({ timeout: 10000, enableHighAccuracy: false}).then(function(position) {
       geoFire.set($scope.uid, [position.coords.latitude, position.coords.longitude]).then(function() {
@@ -54,7 +54,7 @@ app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filt
             uid: uid, 
             location:location, 
             sports: matchResults.sports,
-            distance: 'Distance: ' + (distance > 1 ? parseInt(distance) + 'km' : 'less than 1km'), 
+            distance: 'Distancia: ' + (distance > 1 ? parseInt(distance) + 'km' : 'menos de 1km'), 
             avatar: userProfileObj.avatar,
             name: (userProfileObj.nickname != '' && userProfileObj.nickname) ?  userProfileObj.nickname : userProfileObj.name
           });

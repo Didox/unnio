@@ -1,6 +1,6 @@
 app.controller('FriendsCtrl', function($scope, $window, $stateParams, $ionicModal, $filter, FirebaseData) {  
 
-  $scope.showLoading('Loading friends...');
+  $scope.showLoading('Carregando amigos...');
 
   var conectedFriendsData = [];
   var refFriends = 'friends';
@@ -37,6 +37,7 @@ app.controller('FriendsCtrl', function($scope, $window, $stateParams, $ionicModa
             uid: value.$id,
             status: value.status,
             avatar: user.avatar,
+            sports: user.sports,
             name: (user.nickname != '' && user.nickname) ?  user.nickname : user.name
           });
         })
@@ -54,7 +55,7 @@ app.controller('FriendsCtrl', function($scope, $window, $stateParams, $ionicModa
   }
 
   $scope.deleteConnection = function(uid1, uid2, index, arr, type){
-    $scope.showLoading("Please wait...");
+    $scope.showLoading("Por favor aguarde...");
     var path1 = type + '/' + uid1;
     var path2 = type + '/' + uid2;
     var userLoggedConnection = new FirebaseData('friends', uid1, path2);
@@ -85,7 +86,7 @@ app.controller('FriendsCtrl', function($scope, $window, $stateParams, $ionicModa
   
 
   $scope.addFeedback = function(uid){
-    $scope.showLoading("Adding feedback...");
+    $scope.showLoading("Adicionando avaliação...");
     var feedback = {};
     var userReuptation = new FirebaseData('reputation', uid, '/', 'array');
     userReuptation.$loaded().then(function(){

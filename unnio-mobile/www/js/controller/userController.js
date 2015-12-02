@@ -1,5 +1,5 @@
 app.controller('UserCtrl', function($scope, $state, $stateParams, $ionicModal, $ionicPopup, FirebaseData) {
-  $scope.showLoading("Loading user information"); 
+  $scope.showLoading("Carregando informações"); 
 
   $scope.userName = $stateParams.name;
   var userUid = $stateParams.userUid;

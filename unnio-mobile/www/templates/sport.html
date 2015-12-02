@@ -1,26 +1,11 @@
 <ion-view view-title="{{name}}">
   <ion-content class="sport">
     <div class="list">
-      <div class="item-clear">
-        <p>You can edit you skill level and experience in "{{name}}"</p>
-      </div>
-      <div class="item item-select">
-        <div class="input-label">
-          Skill level
-        </div>
-        <select ng-model="sport.level" required>
-          <option value="1">Newbie</option>
-          <option value="2">Advanced newbie</option>
-          <option value="3">Regular</option>
-          <option value="4">Good</option>
-          <option value="5">Very good</option>
-        </select>
-      </div>
       <div class="item item-divider">
-        My experience on this sport
+        Minha experiencia nesse esporte
       </div>
       <div class="item item-input">
-        <textarea placeholder="Your experience in that sport" ng-model='sport.about'></textarea>
+        <textarea placeholder="Fale sobre sua experiência nesse esporte" ng-model='sport.about'></textarea>
       </div>
     </div>
   </ion-content>

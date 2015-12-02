@@ -1,6 +1,6 @@
 app.controller('RequestsCtrl', function($scope, $window, $stateParams, $ionicModal, $filter, FirebaseData) {
 
-  $scope.showLoading('Loading friends...');
+  $scope.showLoading('Carregando amigos...');
 
   var refFriends = 'friends';
   var pendingRequestsList = [];
@@ -36,10 +36,12 @@ app.controller('RequestsCtrl', function($scope, $window, $stateParams, $ionicMod
       angular.forEach(pendingRequests, function(value){
         var user = new FirebaseData('users', value.$id, 'profile');
         user.$loaded().then(function(){
+          console.log(user);
           pendingRequestsList.push({
             uid: value.$id,
             status: value.status,
             avatar: user.avatar,
+            sports: user.sports,
             name: (user.nickname != '' && user.nickname) ?  user.nickname : user.name
           });
         })
@@ -57,7 +59,7 @@ app.controller('RequestsCtrl', function($scope, $window, $stateParams, $ionicMod
   }
 
   $scope.acceptConnection = function(uid, index){
-    $scope.showLoading("Please wait...");
+    $scope.showLoading("Por favor aguarde...");
     var userLoggedConnection = new FirebaseData(refFriends, $scope.uid, 'conected');
     var userConnection = new FirebaseData(refFriends, uid, 'conected');
     userLoggedConnection.$loaded().then(function(){
@@ -83,7 +85,7 @@ app.controller('RequestsCtrl', function($scope, $window, $stateParams, $ionicMod
   }
 
   $scope.deleteConnection = function(uid1, uid2, index, arr, type){
-    $scope.showLoading("Please wait...");
+    $scope.showLoading("Por favor aguarde...");
     var path1 = type + '/' + uid1;
     var path2 = type + '/' + uid2;
     var userLoggedConnection = new FirebaseData('friends', uid1, path2);

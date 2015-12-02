@@ -2,40 +2,41 @@
   <ion-content class="profile">
     <div class="list">
       <div class="item item-message item-dark item-light item-icon-left" ng-if="sports.length == 0">
-        <i class="icon ion-alert-circled"></i> You should add a sport
+        <i class="icon ion-alert-circled"></i> Você precisa adicionar ao menos um esporte
       </div>
       <div class="item item-energized item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
         <div class="buttons">
           <a ng-click="openModal()" href="#">
             <i class="icon ion-ios-plus-outline"></i>
-            <p>add sport</p>
+            <p>esporte</p>
           </a>
         </div>
       </div>
       <div class="item item-divider">
-        Info
+        Dados perfil
       </div>
       <label class="item item-input">
-        <span class="input-label">Nick</span>
-        <input type="text" ng-model="userProfile.nickname" placeholder="How people see you">
+        <span class="input-label">Apelido</span>
+        <input type="text" ng-model="userProfile.nickname" placeholder="Nome de exibição">
       </label>
       <label class="item item-input">
-        <span class="input-label">Age</span>
+        <span class="input-label">Nome</span>
         <input type="number" ng-model="userProfile.age">
       </label>
       <label class="item item-input">
-        <span class="input-label">Location</span>
-        <input type="tel" ng-model="userProfile.location" placeholder="City, state">
+        <span class="input-label">Localização</span>
+        <input type="tel" ng-model="userProfile.location" placeholder="Cidade, Estado">
       </label>
       <div class="item item-divider item-button-right" ng-if="sports.length > 0">
-        Sports
+        Esportes
         <button class="button button-clear button-dark" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
-          {{listConfig.shouldShowDelete ? 'done' : 'remove'}}
+          {{listConfig.shouldShowDelete ? 'pronto' : 'editar'}}
         </button>
       </div>
       <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="false">
-        <ion-item collection-repeat="sport in sports" ng-href="#/app/profile/sport/{{sport.$id}}/{{sport.name}}" class="item-icon-right">
+        <ion-item collection-repeat="sport in sports" ng-href="#/app/profile/sport/{{sport.$id}}/{{sport.name}}" class="item-icon-right item-icon-left">
+          <i class="icon flaticon-{{sport.key}}"></i>
           <h2>{{sport.name}}</h2>
           <p>{{sport.about}}</p>
           <i class="icon ion-ios-arrow-right"></i>
