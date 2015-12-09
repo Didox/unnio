@@ -10,6 +10,11 @@ angular.module('utils-service', ['firebase'])
   }
 })
 
+.factory("Auth", function($firebaseAuth, FIREBASECONFIG) {
+  var usersRef = new Firebase(FIREBASECONFIG.url);
+  return $firebaseAuth(usersRef);
+})
+
 .factory('FirebaseData', function($firebaseObject, $firebaseArray, FIREBASECONFIG){
   return function (ref, uid, path, dataType){
     var data = new Firebase(FIREBASECONFIG.url).child(ref);

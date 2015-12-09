@@ -9,6 +9,8 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-intent href="*.firebaseio.com" />
+  <allow-intent href="auth.firebase.com" />
   <allow-navigation href="https://auth.firebase.com/v2/unnio/*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>

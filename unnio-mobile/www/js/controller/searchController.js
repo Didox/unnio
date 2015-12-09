@@ -1,4 +1,5 @@
 app.controller('SearchCtrl', function($scope, $state, $cordovaGeolocation, $filter, FirebaseData,  FIREBASECONFIG){
+  
   $scope.showLoading('Carregando perfil...');
   
   var firebaseRef = new Firebase(FIREBASECONFIG.geo);
