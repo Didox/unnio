@@ -9041,7 +9041,15 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-/* colors to override */
+.bar.bar-light .title, .bar-light .button.button-clear {
+  color: #009ddf !important; }
+
+.item.item-stable {
+  color: #777; }
+
+.item-avatar .item-content > img:first-child {
+  top: 6px !important; }
+
 a {
   text-decoration: none; }
 
@@ -9084,18 +9092,6 @@ ion-content {
   max-width: 320px;
   margin: 70px auto 0; }
 
-.login button {
-  max-width: 320px;
-  margin: 50px auto 10px;
-  border: none;
-  border-radius: 5px;
-  background: #3b5a9a !important;
-  color: white !important;
-  padding: 0 30px;
-  max-width: 300px;
-  font-size: 14px;
-  font-weight: bold; }
-
 .login button:active {
   opacity: 0.8; }
 
@@ -9105,6 +9101,20 @@ ion-content {
 
 .login i {
   color: #999; }
+
+.login a {
+  color: #666 !important;
+  text-align: center; }
+
+.login .error-msg {
+  color: #ef473a;
+  font-weight: bold;
+  padding: 10px 0 0 0; }
+
+.login .msg {
+  color: #33cd5f;
+  font-weight: bold;
+  padding: 10px 10px 0px 10px; }
 
 .spinner svg {
   width: 28px;

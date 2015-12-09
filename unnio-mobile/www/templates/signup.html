@@ -10,15 +10,19 @@
       <label class="item item-input">
         <input type="password" placeholder="Senha" data-ng-model="password">
       </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Repita a senha" data-ng-model="repeatpassword">
+      </label>
       <div class="list error-msg" ng-show="error">{{error}}</div>
       <div class="list msg" ng-show="msg">{{msg}}</div>
-      <button class="button button-block button-calm" ng-click="authWithPassword()">Login</button>
+      <button class="button button-block button-calm" ng-click="createUser()">
+        Cadastrar
+      </button>
     </div>
+
     <div class="list">
-      <div class="row">
-        <div class="col col-50"><a href="#/signup">Não tenho cadastro</a></div>
-        <div class="col col-50"><a href="#/password">Esqueci minha senha</a></div>
-      </div>
+      <a href="#/login">Voltar para o login</a></div>
     </div>
+
   </div>
 </ion-content>

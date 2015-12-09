@@ -1,6 +1,6 @@
 {
   "name": "unnio-ionic",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "unnio-ionic: An Ionic project",
   "dependencies": {
     "angularfire": "^1.1.2",
@@ -9,13 +9,12 @@
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^1.3.3",
+    "gulp-sass": "2.1.0",
     "nopt": "^3.0.6",
     "q": "^1.4.1"
   },
   "devDependencies": {
     "bower": "^1.3.3",
-    "gulp-sass": "^2.1.0",
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },
@@ -35,7 +34,6 @@
     }
   ],
   "cordovaPlatforms": [
-    "ios",
     "android"
   ]
 }

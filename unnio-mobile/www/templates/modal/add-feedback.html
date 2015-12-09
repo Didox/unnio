@@ -1,6 +1,6 @@
 <ion-modal-view>
   <ion-header-bar class="bar-light">
-    <h1 class="title">Feedback</h1>
+    <h1 class="title">Recomendações</h1>
     <button class="button button-clear" ng-click="closeModal()"><i class="icon ion-ios-close-outline"></i></button>
   </ion-header-bar>
   <ion-content class="feedback">
@@ -10,7 +10,7 @@
           <label class="item item-radio balanced">
             <input type="radio" ng-model="modal.vote" value="true">
             <div class="item-content">
-              Positive
+              Recomendar
             </div>
             <i class="radio-icon ion-checkmark"></i>
           </label>
@@ -19,7 +19,7 @@
           <label class="item item-radio assertive">
             <input type="radio" ng-model="modal.vote" value="false">
             <div class="item-content">
-              Negative
+              Não recomendar
             </div>
             <i class="radio-icon ion-checkmark"></i>
           </label>
@@ -31,7 +31,7 @@
         <textarea maxlength="140" placeholder="Some few words about this player" ng-model='modal.message'></textarea>
       </label>
       <div class="item">
-        <button class="right button button-block button-calm fright" ng-click="addFeedback(modal.uid, modal.authorUid)"><strong>Save feedback</strong></button>
+        <button class="right button button-block button-calm fright" ng-click="addFeedback(modal.uid, modal.authorUid)"><strong>Salvar</strong></button>
       </div>
     </div>
   </ion-content>
