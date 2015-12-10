@@ -1,21 +1,13 @@
 TODO
 
-Search
-- Mostrar os esportes em comum no card de busca
-- Adicionar o range
+LOGIN
+  1-layout botao facebook
 
-User 
-- Check se o usuario é amigo
-- Botao Avaliar
-- Remover amigo
-- Bloquear
+PROFILE
+  1-abrir modal add sport caso o usuário não tenha esporte
+  2-ajustar mensagem dentro do modal caso usuario nao tenha esportel
+  3-ajudar uname
+  4-botao logout
+  MODAL
+    1-adicionar botao "done" no canto superior direito do modal
 
-Friends
-- actions sheet para acões
-- Deixar o layout do card igual o da busca (com os esportes que combinam)
-
-Chat
-- Tudo
-
-Eventos
-- Tudo

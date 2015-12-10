@@ -8,9 +8,12 @@
       <div class="item item-message item-assertive item-light item-icon-left"  ng-if="modal.error">
         <i class="icon ion-alert-circled"></i>Você deve selecionar um esporte
       </div>
+      <div class="item item-message item-assertive item-light item-icon-left" ng-if="sports.length == 0">
+        <p><i class="icon ion-alert-circled"></i> Você precisa adicionar um esporte para localizar pessoas que praticam o mesmo esporte</p>
+      </div>
       <label class="item item-select">
         <div class="input-label">
-          Esporte
+          Escolher
         </div>
         <select ng-model="modal.name" required>
           <option ng-repeat="option in modal.options" value="{{option.key}}">{{option.value}}</option>

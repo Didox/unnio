@@ -52,6 +52,9 @@ ion-side-menu i{
   font-size: 21px;
   margin-right: 5px;
 }
+ion-side-menu a, ion-side-menu ion-item{
+  color: #009ddf!important;
+}
 
 .ion-log-out:before{
   transform: rotate(180deg);

@@ -1,9 +1,8 @@
 <ion-side-menus enable-menu-with-back-views="false" class="sideMenu">
+
   <ion-side-menu-content>
     <ion-nav-bar class="bar-light">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-
+      <ion-nav-back-button></ion-nav-back-button>
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
@@ -38,11 +37,8 @@
             Pedidos de amizade
           <span class="badge badge-assertive" ng-if="badgeRequests > 0">{{badgeRequests}}</span>
         </ion-item>
-        <ion-item menu-close ng-click="logoutFb()">
-          <i class="icon ion-log-out" style="transform: rotate(180deg);"></i>
-          Sair
-        </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>
+
 </ion-side-menus>

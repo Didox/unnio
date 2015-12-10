@@ -3,20 +3,6 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
   $scope.uname = $localstorage.get('uname');
   $scope.showLoading("Carregando perfil...");
 
-  var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
-
-  $scope.listConfig = {
-    shouldShowDelete : false
-  }
-
-  $ionicModal.fromTemplateUrl('templates/modal/add-sport.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-    $scope.modal.options = SPORTS;
-  });
-
   $scope.openModal = function() {
     $scope.modal.show();
   };
@@ -27,12 +13,28 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+  $ionicModal.fromTemplateUrl('templates/modal/add-sport.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+    $scope.modal.options = SPORTS;
+  });
+
+  var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
+
+  $scope.listConfig = {
+    shouldShowDelete : false
+  }
 
   $scope.loadUser = function(){
     var userProfileObj = new FirebaseData('users', $scope.uid, 'profile');
     userProfileObj.$loaded().then(function() {
       $scope.userProfile = userProfileObj;
       userProfileObj.$bindTo($scope, "userProfile");
+        if(sports.length == 0) {
+          $scope.openModal();
+        };
       $scope.hideLoading();
     })
     .catch(function(error) {

@@ -9,6 +9,12 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoadin
     });
   };
 
+  $scope.logout = function(){
+    console.log("aqui");
+    $scope.authObj.$unauth();
+    $state.go("login");
+  }
+  
   $scope.login = function() {
     $scope.showLoading("Aguarde");
     Auth.$authWithOAuthRedirect("facebook").then(function(authData) {
@@ -31,7 +37,7 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoadin
       console.log("Not logged in yet");
     } else {
       $scope.uid = authData.uid;
-      var userProfileObj = $firebaseObject(userData.child($scope.uid).child('profile'));
+      var userProfileObj = new FirebaseData('users', $scope.uid, 'profile');
       userProfileObj.$loaded().then(function() {
         userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
         userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
@@ -40,6 +46,6 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoadin
            $state.go("app.profile");
         }).catch(function(error) {alert(error)});
       }).catch(function(error) {alert(error)});
+    }
   });
-
 });

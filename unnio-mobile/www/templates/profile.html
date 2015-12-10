@@ -1,9 +1,6 @@
 <ion-view view-title="{{uname}}">
   <ion-content class="profile">
     <div class="list">
-      <div class="item item-message item-dark item-light item-icon-left" ng-if="sports.length == 0">
-        <i class="icon ion-alert-circled"></i> Você precisa adicionar ao menos um esporte
-      </div>
       <div class="item item-energized item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
         <div class="buttons">
@@ -26,12 +23,12 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Localização</span>
-        <input type="tel" ng-model="userProfile.location" placeholder="Cidade, Estado">
+        <input type="text" ng-model="userProfile.location" placeholder="Cidade, Estado">
       </label>
       <div class="item item-divider item-button-right" ng-if="sports.length > 0">
         Esportes
         <button class="button button-clear button-dark" ng-click="listConfig.shouldShowDelete = !listConfig.shouldShowDelete">
-          {{listConfig.shouldShowDelete ? 'pronto' : 'editar'}}
+          {{listConfig.shouldShowDelete ? 'pronto' : 'apagar'}}
         </button>
       </div>
       <ion-list show-delete="listConfig.shouldShowDelete" show-reorder="false" can-swipe="false">
