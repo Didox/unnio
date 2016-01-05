@@ -1,15 +1,17 @@
-app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModal, FirebaseData, SPORTS) {
-
-  $scope.uname = $localstorage.get('uname');
+app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FirebaseData, SPORTS) {
+console.log("xx");
+if($scope.uid){
   $scope.showLoading("Carregando perfil...");
 
+  var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
+
+  //modal
   $scope.openModal = function() {
     $scope.modal.show();
   };
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
-  //Cleanup the modal when we're done with it!
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
@@ -21,8 +23,6 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
     $scope.modal.options = SPORTS;
   });
 
-  var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
-
   $scope.listConfig = {
     shouldShowDelete : false
   }
@@ -32,22 +32,11 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
     userProfileObj.$loaded().then(function() {
       $scope.userProfile = userProfileObj;
       userProfileObj.$bindTo($scope, "userProfile");
-        if(sports.length == 0) {
-          $scope.openModal();
-        };
-      $scope.hideLoading();
-    })
-    .catch(function(error) {
-      console.error("ERROR:", error);
-    });
-
-    sports.$loaded().then(function(x) {
-      $scope.sports = sports;
-    })
-    .catch(function(error) {
-      console.log("ERROR:", error);
-    });
-
+      sports.$loaded().then(function(x) {
+        $scope.sports = sports;
+        $scope.hideLoading();
+      }).catch(function(error) { console.log("ERROR:", error); });
+    }).catch(function(error) { console.error("ERROR:", error); });
   }
 
   $scope.addSport = function(){    
@@ -64,26 +53,26 @@ app.controller('ProfileCtrl', function($scope, $localstorage, $state, $ionicModa
           sports.$add(sport).then(function(ref) {
             $scope.hideLoading();
             $scope.closeModal();
-          }).catch(function(error) {
-            console.error("ERROR:", error);
-          });
+          }).catch(function(error) { console.error("ERROR:", error); });
         }
       });
     }else{
-      $scope.hideLoading();
       $scope.modal.error = true;
+      $scope.hideLoading();
     }
 
   }
 
   $scope.deleteSport = function(index){
     sports.$remove(index).then(function(ref){
-      // Removed
-    }).catch(function(error) {
-      console.error("ERROR:", error);
-    });
+      //sport removed
+    }).catch(function(error) { console.error("ERROR:", error); });
   }
 
   $scope.loadUser();
+
+}else{
+  $state.go("login");
+}
 
 });

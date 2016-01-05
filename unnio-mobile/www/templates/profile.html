@@ -1,8 +1,20 @@
-<ion-view view-title="{{uname}}">
+<ion-view view-title="{{userProfile.name}}">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-right" ng-controller="LoginCtrl" ng-click="logout()">
+      <span class="assertive">sair <i class="icon ion-android-exit"></i></span>
+    </button>
+  </ion-nav-buttons>
   <ion-content class="profile">
     <div class="list">
-      <div class="item item-energized item-button-right avatar">
+      <div class="item item-message item-assertive item-light item-icon-left" ng-if="sports.length == 0">
+        <p><i class="icon ion-alert-circled"></i> Você precisa adicionar um esporte <br> para localizar pessoas</p>
+      </div>
+      <div class="item item-dark item-button-right avatar">
         <div class="img" back-img="{{userProfile.avatar}}" /></div>
+        <div class="data">
+          <div class="name">{{userProfile.name}}</div>
+          <div class="reputation">reputs</div>
+        </div>
         <div class="buttons">
           <a ng-click="openModal()" href="#">
             <i class="icon ion-ios-plus-outline"></i>
@@ -13,10 +25,6 @@
       <div class="item item-divider">
         Dados perfil
       </div>
-      <label class="item item-input">
-        <span class="input-label">Nome</span>
-        <input type="text" ng-model="userProfile.name" placeholder="Nome de exibição">
-      </label>
       <label class="item item-input">
         <span class="input-label">Idade</span>
         <input type="number" ng-model="userProfile.age">

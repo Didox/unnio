@@ -1,13 +1,2 @@
-TODO
-
-LOGIN
-  1-layout botao facebook
-
-PROFILE
-  1-abrir modal add sport caso o usuário não tenha esporte
-  2-ajustar mensagem dentro do modal caso usuario nao tenha esportel
-  3-ajudar uname
-  4-botao logout
-  MODAL
-    1-adicionar botao "done" no canto superior direito do modal
+SISTEMA DE REPUTACAO
 

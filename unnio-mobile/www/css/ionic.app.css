@@ -9075,7 +9075,7 @@ ion-side-menu i {
   margin-right: 5px; }
 
 ion-side-menu a, ion-side-menu ion-item {
-  color: #009ddf !important; }
+  color: #777 !important; }
 
 .ion-log-out:before {
   transform: rotate(180deg); }
@@ -9094,6 +9094,19 @@ ion-content {
 .login {
   max-width: 320px;
   margin: 70px auto 0; }
+
+.login button {
+  background-color: #3B5998;
+  border-radius: 5px;
+  color: white !important;
+  border: none;
+  width: 80%;
+  margin: 30px auto 0;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 40px;
+  box-shadow: 3px 3px 3px #EEE; }
 
 .login button:active {
   opacity: 0.8; }
@@ -9132,7 +9145,6 @@ ion-content {
   font-size: 14px; }
 
 .item.avatar {
-  background-color: #97c00e !important;
   padding: 0;
   height: 100px;
   border-top: none; }
@@ -9143,7 +9155,19 @@ ion-content {
   margin: 10px 10px;
   background-position: center center;
   border: 2px solid white;
-  border-radius: 50%; }
+  border-radius: 50%;
+  float: left; }
+
+.item.avatar .data {
+  float: left;
+  margin: 20px 10px 10px 10px; }
+
+.item.avatar .data .name {
+  font-weight: bold;
+  font-size: 20px; }
+
+.item.avatar .data .reputation {
+  margin-top: 10px; }
 
 .item-avatar img {
   margin-top: 10px; }
@@ -9190,6 +9214,10 @@ ion-content {
   width: 100%;
   clear: both;
   display: block; }
+
+.profile .item-message.item-assertive p {
+  color: white !important;
+  font-weight: bold; }
 
 @font-face {
   font-family: "Flaticon";

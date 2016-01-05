@@ -10,7 +10,6 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoadin
   };
 
   $scope.logout = function(){
-    console.log("aqui");
     $scope.authObj.$unauth();
     $state.go("login");
   }
@@ -24,7 +23,6 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoadin
       if (error.code === "TRANSPORT_UNAVAILABLE") {
         Auth.$authWithOAuthPopup("facebook").then(function(authData) {
           $scope.uid = authData.uid;
-          $state.go("app.profile");
         });
       } else {
         alert(error);
@@ -39,13 +37,15 @@ app.controller('LoginCtrl', function($scope, $state, $firebaseAuth, $ionicLoadin
       $scope.uid = authData.uid;
       var userProfileObj = new FirebaseData('users', $scope.uid, 'profile');
       userProfileObj.$loaded().then(function() {
-        userProfileObj.name = authData.facebook.cachedUserProfile.first_name;
-        userProfileObj.avatar = authData.facebook.cachedUserProfile.picture.data.url;
+        userProfileObj.name = userProfileObj.name ? userProfileObj.name : authData.facebook.displayName;
+        userProfileObj.avatar = authData.facebook.profileImageURL;
         userProfileObj.searchRange = userProfileObj.searchRange ? userProfileObj.searchRange : 15
         userProfileObj.$save().then(function(ref) {
-           $state.go("app.profile");
+          $scope.uid = authData.uid;
+          $state.go("app.profile");
         }).catch(function(error) {alert(error)});
       }).catch(function(error) {alert(error)});
     }
   });
+
 });
