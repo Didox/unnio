@@ -1,11 +1,10 @@
 app.controller('ProfileCtrl', function($scope, $state, $ionicModal, FirebaseData, SPORTS) {
-console.log("xx");
+
 if($scope.uid){
   $scope.showLoading("Carregando perfil...");
 
   var sports = new FirebaseData('users', $scope.uid, 'profile/sports', 'array');
 
-  //modal
   $scope.openModal = function() {
     $scope.modal.show();
   };
@@ -27,11 +26,19 @@ if($scope.uid){
     shouldShowDelete : false
   }
 
+  $scope.loadUserReputation = function(){
+    var userReputation = new FirebaseData('reputation', $scope.uid, '/', 'array');
+    userReputation.$loaded().then(function() {
+      $scope.userReputation = userReputation.length;
+    }).catch(function(error) { console.error("ERROR:", error); });
+  }
+
   $scope.loadUser = function(){
     var userProfileObj = new FirebaseData('users', $scope.uid, 'profile');
     userProfileObj.$loaded().then(function() {
       $scope.userProfile = userProfileObj;
       userProfileObj.$bindTo($scope, "userProfile");
+      $scope.loadUserReputation();
       sports.$loaded().then(function(x) {
         $scope.sports = sports;
         $scope.hideLoading();
@@ -65,7 +72,6 @@ if($scope.uid){
 
   $scope.deleteSport = function(index){
     sports.$remove(index).then(function(ref){
-      //sport removed
     }).catch(function(error) { console.error("ERROR:", error); });
   }
 

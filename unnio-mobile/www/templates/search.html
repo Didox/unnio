@@ -13,10 +13,6 @@
       <div class="item item-stable item-input range range-energized">
         Distancia <input type="range" min="1" max="40" on-release="reloadRoute()" ng-model="userLoggedProfileObj.searchRange"> {{userLoggedProfileObj.searchRange}}km
       </div>
-<!--       <div class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Filter results" ng-model='filterKey'>
-      </div> -->
       <ion-item class="item item-avatar item-icon-right" collection-repeat="result in searchResults | filter:filterKey" href="#/app/user/{{result.uid}}/{{result.name}}">
         <img ng-src="{{result.avatar}}">
         <h2>{{result.name}}</h2>
